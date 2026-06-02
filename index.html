@@ -3,998 +3,1023 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📰 每日热点快讯看板</title>
+    <title>每日热点快讯 — Linear</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-deep: #010102;
+            --bg-page: #08090a;
+            --bg-panel: #0f1011;
+            --bg-surface: #191a1b;
+            --bg-hover: #28282c;
+            --text-primary: #f7f8f8;
+            --text-secondary: #d0d6e0;
+            --text-tertiary: #8a8f98;
+            --text-quaternary: #62666d;
+            --brand-indigo: #5e6ad2;
+            --brand-violet: #7170ff;
+            --brand-hover: #828fff;
+            --border-subtle: rgba(255,255,255,0.05);
+            --border-standard: rgba(255,255,255,0.08);
+            --border-prominent: rgb(36, 40, 44);
+            --success: #10b981;
+            --warning: #dd5b00;
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-pill: 9999px;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-feature-settings: "cv01", "ss03";
+            background: var(--bg-page);
+            color: var(--text-primary);
             min-height: 100vh;
-            color: #e0e0e0;
-            padding: 20px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
-        
+
         .container {
-            max-width: 1400px;
+            max-width: 900px;
             margin: 0 auto;
+            padding: 48px 24px;
         }
-        
-        /* 头部 */
+
+        /* Header */
         .header {
-            text-align: center;
-            padding: 30px 20px;
-            margin-bottom: 30px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 40px;
         }
-        
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
         .header h1 {
-            font-size: 2.5rem;
-            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient 5s ease infinite;
-            margin-bottom: 10px;
+            font-size: 32px;
+            font-weight: 510;
+            letter-spacing: -0.704px;
+            line-height: 1.13;
+            color: var(--text-primary);
         }
-        
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+
+        .header h1 span {
+            color: var(--text-tertiary);
+            font-weight: 400;
         }
-        
-        .header .subtitle {
-            color: #a0a0a0;
-            font-size: 1rem;
+
+        .update-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 510;
+            color: var(--text-quaternary);
+            background: var(--bg-surface);
+            border: 1px solid var(--border-standard);
+            border-radius: var(--radius-pill);
+            padding: 4px 12px;
         }
-        
-        .update-time {
-            display: inline-block;
-            background: rgba(255,255,255,0.1);
-            padding: 8px 20px;
-            border-radius: 20px;
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: #48dbfb;
-        }
-        
-        .update-time .live-dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: #ff6b6b;
+
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--success);
             border-radius: 50%;
-            margin-right: 8px;
             animation: pulse 2s infinite;
         }
-        
+
         @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
         }
-        
-        /* 平台筛选标签 */
-        .platform-filter {
+
+        .header-sub {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-tertiary);
+            letter-spacing: -0.165px;
+        }
+
+        /* Platform Filter */
+        .filter-bar {
             display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
             flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin-bottom: 30px;
-            padding: 15px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 15px;
         }
-        
-        .platform-tag {
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
+
+        .filter-pill {
+            font-size: 12px;
+            font-weight: 510;
+            color: var(--text-tertiary);
+            background: transparent;
+            border: 1px solid rgb(35, 37, 42);
+            border-radius: var(--radius-pill);
+            padding: 4px 12px;
             cursor: pointer;
-            transition: all 0.3s;
-            border: 1px solid rgba(255,255,255,0.15);
+            transition: all 0.15s ease;
+            font-family: inherit;
+            font-feature-settings: inherit;
+        }
+
+        .filter-pill:hover {
+            color: var(--text-secondary);
+            border-color: var(--border-standard);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .filter-pill.active {
+            color: var(--text-primary);
             background: rgba(255,255,255,0.05);
-            color: #ccc;
+            border-color: var(--border-standard);
         }
-        
-        .platform-tag:hover, .platform-tag.active {
-            background: rgba(255,255,255,0.15);
-            border-color: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-        }
-        
-        .platform-tag.zhihu { border-color: #0084ff; color: #0084ff; }
-        .platform-tag.baidu { border-color: #2932e1; color: #4e6ef2; }
-        .platform-tag.weibo { border-color: #e6162d; color: #e6162d; }
-        .platform-tag.tech { border-color: #00c853; color: #00c853; }
-        .platform-tag.news { border-color: #ff9800; color: #ff9800; }
-        
-        /* 分类卡片 */
-        .category-section {
-            margin-bottom: 25px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 20px;
+
+        /* Category Section */
+        .category {
+            margin-bottom: 8px;
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.3s;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-panel);
         }
-        
-        .category-section:hover {
-            border-color: rgba(255,255,255,0.15);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
-        
+
         .category-header {
             display: flex;
             align-items: center;
-            padding: 18px 25px;
+            padding: 14px 20px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background 0.15s ease;
+            user-select: none;
         }
-        
+
         .category-header:hover {
-            background: rgba(255,255,255,0.03);
+            background: var(--bg-surface);
         }
-        
+
         .category-icon {
-            font-size: 1.8rem;
+            font-size: 18px;
+            margin-right: 10px;
+            opacity: 0.9;
+        }
+
+        .category-name {
+            font-size: 15px;
+            font-weight: 510;
+            color: var(--text-secondary);
+            flex: 1;
+            letter-spacing: -0.165px;
+        }
+
+        .category-count {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--text-quaternary);
             margin-right: 12px;
         }
-        
-        .category-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            flex: 1;
+
+        .category-toggle {
+            font-size: 12px;
+            color: var(--text-quaternary);
+            transition: transform 0.2s ease;
+            width: 16px;
+            text-align: center;
         }
-        
-        .category-count {
-            background: rgba(255,255,255,0.1);
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            color: #aaa;
-        }
-        
-        .toggle-icon {
-            margin-left: 15px;
-            font-size: 1.2rem;
-            transition: transform 0.3s;
-        }
-        
-        .category-section.collapsed .toggle-icon {
+
+        .category.collapsed .category-toggle {
             transform: rotate(-90deg);
         }
-        
-        .category-section.collapsed .news-list {
+
+        .category.collapsed .news-list {
             display: none;
         }
-        
+
+        /* News List */
         .news-list {
-            padding: 0 25px 20px;
+            border-top: 1px solid var(--border-subtle);
         }
-        
+
         .news-item {
             display: flex;
             align-items: flex-start;
-            padding: 14px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.3s;
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border-subtle);
+            transition: background 0.1s ease;
             cursor: pointer;
             text-decoration: none;
             color: inherit;
         }
-        
+
         .news-item:last-child {
             border-bottom: none;
         }
-        
+
         .news-item:hover {
-            background: rgba(255,255,255,0.03);
-            margin: 0 -25px;
-            padding-left: 25px;
-            padding-right: 25px;
+            background: rgba(255,255,255,0.02);
         }
-        
-        .rank {
-            min-width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            margin-right: 15px;
-            flex-shrink: 0;
+
+        .news-rank {
+            font-size: 12px;
+            font-weight: 510;
+            color: var(--text-quaternary);
+            min-width: 24px;
+            text-align: right;
+            margin-right: 14px;
+            margin-top: 2px;
+            font-feature-settings: "tnum";
         }
-        
-        .rank.top3 {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-        }
-        
-        .rank.top5 {
-            background: linear-gradient(135deg, #feca57, #ff9f43);
-        }
-        
-        .rank.normal {
-            background: rgba(255,255,255,0.1);
-            color: #aaa;
-        }
-        
-        .news-content {
+
+        .news-rank.top { color: var(--text-secondary); }
+        .news-rank.hot { color: var(--brand-violet); }
+
+        .news-body {
             flex: 1;
             min-width: 0;
         }
-        
+
         .news-title {
-            font-size: 1rem;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-primary);
             line-height: 1.5;
             margin-bottom: 6px;
             word-break: break-word;
         }
-        
+
         .news-meta {
             display: flex;
             align-items: center;
             gap: 10px;
             flex-wrap: wrap;
         }
-        
-        .platform-badge {
-            padding: 2px 10px;
-            border-radius: 10px;
-            font-size: 0.75rem;
-            font-weight: 500;
+
+        .meta-platform {
+            font-size: 11px;
+            font-weight: 510;
+            color: var(--text-quaternary);
+            letter-spacing: 0.048px;
         }
-        
-        .platform-badge.zhihu { background: rgba(0,132,255,0.15); color: #0084ff; }
-        .platform-badge.baidu { background: rgba(78,110,242,0.15); color: #4e6ef2; }
-        .platform-badge.weibo { background: rgba(230,22,45,0.15); color: #e6162d; }
-        .platform-badge.tech { background: rgba(0,200,83,0.15); color: #00c853; }
-        .platform-badge.news { background: rgba(255,152,0,0.15); color: #ff9800; }
-        .platform-badge.网易 { background: rgba(200,30,30,0.15); color: #c81e1e; }
-        
-        .heat-badge {
-            display: flex;
+
+        .meta-heat {
+            display: inline-flex;
             align-items: center;
-            gap: 4px;
-            font-size: 0.8rem;
-            color: #ff6b6b;
+            gap: 3px;
+            font-size: 11px;
+            font-weight: 510;
+            color: var(--warning);
         }
-        
-        .heat-badge::before {
-            content: "🔥";
+
+        .meta-heat::before {
+            content: "";
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background: var(--warning);
+            border-radius: 50%;
         }
-        
-        .tag-badge {
-            padding: 2px 8px;
-            border-radius: 8px;
-            font-size: 0.7rem;
-            background: rgba(255,255,255,0.08);
-            color: #888;
+
+        .meta-tag {
+            font-size: 10px;
+            font-weight: 510;
+            color: var(--text-tertiary);
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 2px;
+            padding: 1px 6px;
+            letter-spacing: 0.048px;
         }
-        
-        .arrow {
-            margin-left: 10px;
-            color: rgba(255,255,255,0.3);
-            font-size: 1.2rem;
+
+        .meta-tag.brand {
+            color: var(--brand-violet);
+            background: rgba(94, 106, 210, 0.1);
+            border-color: rgba(94, 106, 210, 0.2);
+        }
+
+        .news-arrow {
+            margin-left: 8px;
+            color: var(--text-quaternary);
+            font-size: 13px;
+            opacity: 0;
+            transition: opacity 0.15s ease;
             flex-shrink: 0;
+            margin-top: 2px;
         }
-        
-        /* 底部 */
+
+        .news-item:hover .news-arrow {
+            opacity: 1;
+        }
+
+        /* Footer */
         .footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-subtle);
             text-align: center;
-            padding: 30px;
-            color: #666;
-            font-size: 0.85rem;
         }
-        
+
+        .footer p {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--text-quaternary);
+            line-height: 1.8;
+        }
+
         .footer a {
-            color: #48dbfb;
+            color: var(--text-tertiary);
             text-decoration: none;
+            transition: color 0.15s ease;
         }
-        
-        /* 响应式 */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.8rem;
-            }
-            
-            .news-item:hover {
-                margin: 0 -15px;
-                padding-left: 15px;
-                padding-right: 15px;
-            }
-            
-            .news-list {
-                padding: 0 15px 15px;
-            }
-            
-            .category-header {
-                padding: 15px 18px;
-            }
+
+        .footer a:hover {
+            color: var(--text-secondary);
         }
-        
-        /* 滚动条美化 */
+
+        /* Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
-        
         ::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.05);
+            background: var(--bg-page);
         }
-        
         ::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.2);
+            background: var(--bg-surface);
             border-radius: 4px;
         }
-        
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255,255,255,0.3);
+            background: var(--bg-hover);
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .container {
+                padding: 24px 16px;
+            }
+            .header h1 {
+                font-size: 24px;
+                letter-spacing: -0.288px;
+            }
+            .news-item {
+                padding: 10px 14px;
+            }
+            .news-title {
+                font-size: 13px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>📰 每日热点快讯看板</h1>
-            <p class="subtitle">聚合全网热点，一站式掌握资讯脉搏</p>
-            <div class="update-time">
-                <span class="live-dot"></span>
-                更新时间：2026-06-02 12:16 CST | 每日自动更新
+            <div class="header-top">
+                <h1>每日热点 <span>快讯</span></h1>
+                <span class="update-badge">
+                    <span class="live-dot"></span>
+                    2026-06-02 12:16 CST
+                </span>
             </div>
-        </div>
-        
-        <div class="platform-filter">
-            <span class="platform-tag active">全部平台</span>
-            <span class="platform-tag baidu">🔍 百度热搜</span>
-            <span class="platform-tag zhihu">💬 知乎热榜</span>
-            <span class="platform-tag weibo">📱 微博热搜</span>
-            <span class="platform-tag tech">🔬 科技资讯</span>
-            <span class="platform-tag news">📺 新闻头条</span>
+            <p class="header-sub">聚合全网热点，一站式掌握资讯脉搏 · 每日自动更新</p>
         </div>
 
-        <div class="category-section" id="cat-0">
-            <div class="category-header" onclick="toggleSection(0)">
+        <div class="filter-bar">
+            <button class="filter-pill active" data-filter="all">全部</button>
+            <button class="filter-pill" data-filter="知乎">知乎</button>
+            <button class="filter-pill" data-filter="百度">百度</button>
+            <button class="filter-pill" data-filter="微博">微博</button>
+            <button class="filter-pill" data-filter="科技新闻">科技新闻</button>
+            <button class="filter-pill" data-filter="网易">网易</button>
+        </div>
+
+        <div class="category" id="cat-0">
+            <div class="category-header" onclick="toggleCat(0)">
                 <span class="category-icon">🔬</span>
-                <span class="category-title" style="color: #3b82f6">科技前沿</span>
+                <span class="category-name">科技前沿</span>
                 <span class="category-count">8 条</span>
-                <span class="toggle-icon">▼</span>
+                <span class="category-toggle">▼</span>
             </div>
             <div class="news-list">
 
-                <a class="news-item" href="https://www.zhihu.com/search?q=豆包收费" target="_blank">
-                    <span class="rank top3">1</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=豆包预计6月下旬正式收费，基础功能永久免费" target="_blank" data-platform="知乎/百度">
+                    <span class="news-rank hot">1</span>
+                    <div class="news-body">
                         <div class="news-title">豆包预计6月下旬正式收费，基础功能永久免费</div>
                         <div class="news-meta">
-                            <span class="platform-badge zhihu">知乎/百度</span>
-                            <span class="heat-badge">1121万</span>
-                            <span class="tag-badge">AI</span>
+                            <span class="meta-platform">知乎/百度</span>
+                            <span class="meta-heat">1121万</span>
+                            <span class="meta-tag brand">AI</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://top.baidu.com" target="_blank">
-                    <span class="rank top3">2</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=黄仁勋联手宇树打造1.8米人形机器人，英伟达提供「大脑」" target="_blank" data-platform="百度/知乎">
+                    <span class="news-rank hot">2</span>
+                    <div class="news-body">
                         <div class="news-title">黄仁勋联手宇树打造1.8米人形机器人，英伟达提供「大脑」</div>
                         <div class="news-meta">
-                            <span class="platform-badge baidu">百度/知乎</span>
-                            <span class="heat-badge">780万</span>
-                            <span class="tag-badge">机器人</span>
+                            <span class="meta-platform">百度/知乎</span>
+                            <span class="meta-heat">780万</span>
+                            <span class="meta-tag ">机器人</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://tech.sina.com.cn" target="_blank">
-                    <span class="rank top3">3</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=英伟达RTX Spark PC处理器正式发布：20核CPU+" target="_blank" data-platform="科技新闻">
+                    <span class="news-rank hot">3</span>
+                    <div class="news-body">
                         <div class="news-title">英伟达RTX Spark PC处理器正式发布：20核CPU+RTX GPU</div>
                         <div class="news-meta">
-                            <span class="platform-badge tech">科技新闻</span>
-                            <span class="heat-badge">650万</span>
-                            <span class="tag-badge">芯片</span>
+                            <span class="meta-platform">科技新闻</span>
+                            <span class="meta-heat">650万</span>
+                            <span class="meta-tag brand">芯片</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://tech.sina.com.cn" target="_blank">
-                    <span class="rank top5">4</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=宇树科技科创板IPO顺利过会，符合上市发行条件" target="_blank" data-platform="科技新闻">
+                    <span class="news-rank top">4</span>
+                    <div class="news-body">
                         <div class="news-title">宇树科技科创板IPO顺利过会，符合上市发行条件</div>
                         <div class="news-meta">
-                            <span class="platform-badge tech">科技新闻</span>
-                            <span class="heat-badge">520万</span>
-                            <span class="tag-badge">IPO</span>
+                            <span class="meta-platform">科技新闻</span>
+                            <span class="meta-heat">520万</span>
+                            <span class="meta-tag ">IPO</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://tech.sina.com.cn" target="_blank">
-                    <span class="rank top5">5</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=阿里发布Qwen3.7-Plus：文本、视觉能力大幅提升" target="_blank" data-platform="科技新闻">
+                    <span class="news-rank top">5</span>
+                    <div class="news-body">
                         <div class="news-title">阿里发布Qwen3.7-Plus：文本、视觉能力大幅提升</div>
                         <div class="news-meta">
-                            <span class="platform-badge tech">科技新闻</span>
-                            <span class="heat-badge">480万</span>
-                            <span class="tag-badge">AI</span>
+                            <span class="meta-platform">科技新闻</span>
+                            <span class="meta-heat">480万</span>
+                            <span class="meta-tag brand">AI</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://tech.sina.com.cn" target="_blank">
-                    <span class="rank normal">6</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=华为nova 16全场景发布会：鸿蒙智家打造会思考的家" target="_blank" data-platform="科技新闻">
+                    <span class="news-rank ">6</span>
+                    <div class="news-body">
                         <div class="news-title">华为nova 16全场景发布会：鸿蒙智家打造会思考的家</div>
                         <div class="news-meta">
-                            <span class="platform-badge tech">科技新闻</span>
-                            <span class="heat-badge">420万</span>
-                            <span class="tag-badge">华为</span>
+                            <span class="meta-platform">科技新闻</span>
+                            <span class="meta-heat">420万</span>
+                            <span class="meta-tag ">华为</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://tech.sina.com.cn" target="_blank">
-                    <span class="rank normal">7</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=OpenAI遭美佛州总检察长起诉，理由是「AI产生危害」" target="_blank" data-platform="科技新闻">
+                    <span class="news-rank ">7</span>
+                    <div class="news-body">
                         <div class="news-title">OpenAI遭美佛州总检察长起诉，理由是「AI产生危害」</div>
                         <div class="news-meta">
-                            <span class="platform-badge tech">科技新闻</span>
-                            <span class="heat-badge">380万</span>
-                            <span class="tag-badge">AI</span>
+                            <span class="meta-platform">科技新闻</span>
+                            <span class="meta-heat">380万</span>
+                            <span class="meta-tag brand">AI</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://tech.sina.com.cn" target="_blank">
-                    <span class="rank normal">8</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=微软将在Build开发者大会发布全新AI模型与Windows" target="_blank" data-platform="科技新闻">
+                    <span class="news-rank ">8</span>
+                    <div class="news-body">
                         <div class="news-title">微软将在Build开发者大会发布全新AI模型与Windows升级</div>
                         <div class="news-meta">
-                            <span class="platform-badge tech">科技新闻</span>
-                            <span class="heat-badge">350万</span>
-                            <span class="tag-badge">AI</span>
+                            <span class="meta-platform">科技新闻</span>
+                            <span class="meta-heat">350万</span>
+                            <span class="meta-tag brand">AI</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
             </div>
         </div>
 
-        <div class="category-section" id="cat-1">
-            <div class="category-header" onclick="toggleSection(1)">
+        <div class="category" id="cat-1">
+            <div class="category-header" onclick="toggleCat(1)">
                 <span class="category-icon">🏘️</span>
-                <span class="category-title" style="color: #10b981">社会民生</span>
+                <span class="category-name">社会民生</span>
                 <span class="category-count">8 条</span>
-                <span class="toggle-icon">▼</span>
+                <span class="category-toggle">▼</span>
             </div>
             <div class="news-list">
 
-                <a class="news-item" href="https://top.baidu.com" target="_blank">
-                    <span class="rank top3">1</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=网暴救灾村干部戴「金耳环」者被罚" target="_blank" data-platform="百度">
+                    <span class="news-rank hot">1</span>
+                    <div class="news-body">
                         <div class="news-title">网暴救灾村干部戴「金耳环」者被罚</div>
                         <div class="news-meta">
-                            <span class="platform-badge baidu">百度</span>
-                            <span class="heat-badge">771万</span>
-                            <span class="tag-badge">社会</span>
+                            <span class="meta-platform">百度</span>
+                            <span class="meta-heat">771万</span>
+                            <span class="meta-tag ">社会</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://top.baidu.com" target="_blank">
-                    <span class="rank top3">2</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=00后班主任把垫底班带到年级第一" target="_blank" data-platform="百度">
+                    <span class="news-rank hot">2</span>
+                    <div class="news-body">
                         <div class="news-title">00后班主任把垫底班带到年级第一</div>
                         <div class="news-meta">
-                            <span class="platform-badge baidu">百度</span>
-                            <span class="heat-badge">761万</span>
-                            <span class="tag-badge">教育</span>
+                            <span class="meta-platform">百度</span>
+                            <span class="meta-heat">761万</span>
+                            <span class="meta-tag ">教育</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.zhihu.com" target="_blank">
-                    <span class="rank top3">3</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=大厂又曝断指计划，年薪三倍挖人后试用期解雇" target="_blank" data-platform="知乎">
+                    <span class="news-rank hot">3</span>
+                    <div class="news-body">
                         <div class="news-title">大厂又曝断指计划，年薪三倍挖人后试用期解雇</div>
                         <div class="news-meta">
-                            <span class="platform-badge zhihu">知乎</span>
-                            <span class="heat-badge">464万</span>
-                            <span class="tag-badge">职场</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">464万</span>
+                            <span class="meta-tag ">职场</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://top.baidu.com" target="_blank">
-                    <span class="rank top5">4</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=中学教室热似「蒸笼」校方回应：电容不足" target="_blank" data-platform="百度">
+                    <span class="news-rank top">4</span>
+                    <div class="news-body">
                         <div class="news-title">中学教室热似「蒸笼」校方回应：电容不足</div>
                         <div class="news-meta">
-                            <span class="platform-badge baidu">百度</span>
-                            <span class="heat-badge">542万</span>
-                            <span class="tag-badge">教育</span>
+                            <span class="meta-platform">百度</span>
+                            <span class="meta-heat">542万</span>
+                            <span class="meta-tag ">教育</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://top.baidu.com" target="_blank">
-                    <span class="rank top5">5</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=一碗剩米饭吃进ICU，广东50岁男子严重休克" target="_blank" data-platform="百度">
+                    <span class="news-rank top">5</span>
+                    <div class="news-body">
                         <div class="news-title">一碗剩米饭吃进ICU，广东50岁男子严重休克</div>
                         <div class="news-meta">
-                            <span class="platform-badge baidu">百度</span>
-                            <span class="heat-badge">579万</span>
-                            <span class="tag-badge">健康</span>
+                            <span class="meta-platform">百度</span>
+                            <span class="meta-heat">579万</span>
+                            <span class="meta-tag ">健康</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://top.baidu.com" target="_blank">
-                    <span class="rank normal">6</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=「一针瘦十斤」真的适合所有人吗？减肥针乱象" target="_blank" data-platform="百度">
+                    <span class="news-rank ">6</span>
+                    <div class="news-body">
                         <div class="news-title">「一针瘦十斤」真的适合所有人吗？减肥针乱象</div>
                         <div class="news-meta">
-                            <span class="platform-badge baidu">百度</span>
-                            <span class="heat-badge">333万</span>
-                            <span class="tag-badge">健康</span>
+                            <span class="meta-platform">百度</span>
+                            <span class="meta-heat">333万</span>
+                            <span class="meta-tag ">健康</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://top.baidu.com" target="_blank">
-                    <span class="rank normal">7</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=公示治理完成，复核水体仍为重度黑臭" target="_blank" data-platform="百度">
+                    <span class="news-rank ">7</span>
+                    <div class="news-body">
                         <div class="news-title">公示治理完成，复核水体仍为重度黑臭</div>
                         <div class="news-meta">
-                            <span class="platform-badge baidu">百度</span>
-                            <span class="heat-badge">320万</span>
-                            <span class="tag-badge">环保</span>
+                            <span class="meta-platform">百度</span>
+                            <span class="meta-heat">320万</span>
+                            <span class="meta-tag ">环保</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://top.baidu.com" target="_blank">
-                    <span class="rank normal">8</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=游客嫌潮汕火锅太淡欲写5000字差评" target="_blank" data-platform="百度">
+                    <span class="news-rank ">8</span>
+                    <div class="news-body">
                         <div class="news-title">游客嫌潮汕火锅太淡欲写5000字差评</div>
                         <div class="news-meta">
-                            <span class="platform-badge baidu">百度</span>
-                            <span class="heat-badge">628万</span>
-                            <span class="tag-badge">消费</span>
+                            <span class="meta-platform">百度</span>
+                            <span class="meta-heat">628万</span>
+                            <span class="meta-tag ">消费</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
             </div>
         </div>
 
-        <div class="category-section" id="cat-2">
-            <div class="category-header" onclick="toggleSection(2)">
+        <div class="category" id="cat-2">
+            <div class="category-header" onclick="toggleCat(2)">
                 <span class="category-icon">🌍</span>
-                <span class="category-title" style="color: #f59e0b">国际局势</span>
+                <span class="category-name">国际局势</span>
                 <span class="category-count">8 条</span>
-                <span class="toggle-icon">▼</span>
+                <span class="category-toggle">▼</span>
             </div>
             <div class="news-list">
 
-                <a class="news-item" href="https://top.baidu.com" target="_blank">
-                    <span class="rank top3">1</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=台湾岛内统一声浪持续高涨，独派团体宣布调整立场" target="_blank" data-platform="百度">
+                    <span class="news-rank hot">1</span>
+                    <div class="news-body">
                         <div class="news-title">台湾岛内统一声浪持续高涨，独派团体宣布调整立场</div>
                         <div class="news-meta">
-                            <span class="platform-badge baidu">百度</span>
-                            <span class="heat-badge">780万</span>
-                            <span class="tag-badge">时政</span>
+                            <span class="meta-platform">百度</span>
+                            <span class="meta-heat">780万</span>
+                            <span class="meta-tag brand">时政</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://top.baidu.com" target="_blank">
-                    <span class="rank top3">2</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=俄对乌克兰全境发动空袭，造成多人伤亡" target="_blank" data-platform="百度">
+                    <span class="news-rank hot">2</span>
+                    <div class="news-body">
                         <div class="news-title">俄对乌克兰全境发动空袭，造成多人伤亡</div>
                         <div class="news-meta">
-                            <span class="platform-badge baidu">百度</span>
-                            <span class="heat-badge">618万</span>
-                            <span class="tag-badge">军事</span>
+                            <span class="meta-platform">百度</span>
+                            <span class="meta-heat">618万</span>
+                            <span class="meta-tag brand">军事</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.zhihu.com" target="_blank">
-                    <span class="rank top3">3</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=伊朗暂停通过中间人同美国的对话，计划封锁霍尔木兹海峡" target="_blank" data-platform="知乎">
+                    <span class="news-rank hot">3</span>
+                    <div class="news-body">
                         <div class="news-title">伊朗暂停通过中间人同美国的对话，计划封锁霍尔木兹海峡</div>
                         <div class="news-meta">
-                            <span class="platform-badge zhihu">知乎</span>
-                            <span class="heat-badge">136万</span>
-                            <span class="tag-badge">军事</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">136万</span>
+                            <span class="meta-tag brand">军事</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://tech.sina.com.cn" target="_blank">
-                    <span class="rank top5">4</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=以色列扩大在黎巴嫩的军事行动，停火希望受挫" target="_blank" data-platform="科技新闻">
+                    <span class="news-rank top">4</span>
+                    <div class="news-body">
                         <div class="news-title">以色列扩大在黎巴嫩的军事行动，停火希望受挫</div>
                         <div class="news-meta">
-                            <span class="platform-badge tech">科技新闻</span>
-                            <span class="heat-badge">290万</span>
-                            <span class="tag-badge">军事</span>
+                            <span class="meta-platform">科技新闻</span>
+                            <span class="meta-heat">290万</span>
+                            <span class="meta-tag brand">军事</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://top.baidu.com" target="_blank">
-                    <span class="rank top5">5</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=中方代表呼吁立即实现停火止战，黎以局势急剧升级" target="_blank" data-platform="百度">
+                    <span class="news-rank top">5</span>
+                    <div class="news-body">
                         <div class="news-title">中方代表呼吁立即实现停火止战，黎以局势急剧升级</div>
                         <div class="news-meta">
-                            <span class="platform-badge baidu">百度</span>
-                            <span class="heat-badge">504万</span>
-                            <span class="tag-badge">外交</span>
+                            <span class="meta-platform">百度</span>
+                            <span class="meta-heat">504万</span>
+                            <span class="meta-tag ">外交</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://top.baidu.com" target="_blank">
-                    <span class="rank normal">6</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=挪威外长：世界太疯狂，重新考虑入欧" target="_blank" data-platform="百度">
+                    <span class="news-rank ">6</span>
+                    <div class="news-body">
                         <div class="news-title">挪威外长：世界太疯狂，重新考虑入欧</div>
                         <div class="news-meta">
-                            <span class="platform-badge baidu">百度</span>
-                            <span class="heat-badge">513万</span>
-                            <span class="tag-badge">外交</span>
+                            <span class="meta-platform">百度</span>
+                            <span class="meta-heat">513万</span>
+                            <span class="meta-tag ">外交</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.zhihu.com" target="_blank">
-                    <span class="rank normal">7</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=印度遭遇罕见热浪突破百年来最高纪录，德里逼近50度" target="_blank" data-platform="知乎">
+                    <span class="news-rank ">7</span>
+                    <div class="news-body">
                         <div class="news-title">印度遭遇罕见热浪突破百年来最高纪录，德里逼近50度</div>
                         <div class="news-meta">
-                            <span class="platform-badge zhihu">知乎</span>
-                            <span class="heat-badge">105万</span>
-                            <span class="tag-badge">灾害</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">105万</span>
+                            <span class="meta-tag ">灾害</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://top.baidu.com" target="_blank">
-                    <span class="rank normal">8</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=中国船企在希腊签下百亿大单，签订12艘船舶" target="_blank" data-platform="百度">
+                    <span class="news-rank ">8</span>
+                    <div class="news-body">
                         <div class="news-title">中国船企在希腊签下百亿大单，签订12艘船舶</div>
                         <div class="news-meta">
-                            <span class="platform-badge baidu">百度</span>
-                            <span class="heat-badge">314万</span>
-                            <span class="tag-badge">经贸</span>
+                            <span class="meta-platform">百度</span>
+                            <span class="meta-heat">314万</span>
+                            <span class="meta-tag ">经贸</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
             </div>
         </div>
 
-        <div class="category-section" id="cat-3">
-            <div class="category-header" onclick="toggleSection(3)">
+        <div class="category" id="cat-3">
+            <div class="category-header" onclick="toggleCat(3)">
                 <span class="category-icon">💰</span>
-                <span class="category-title" style="color: #8b5cf6">财经商业</span>
+                <span class="category-name">财经商业</span>
                 <span class="category-count">8 条</span>
-                <span class="toggle-icon">▼</span>
+                <span class="category-toggle">▼</span>
             </div>
             <div class="news-list">
 
-                <a class="news-item" href="https://top.baidu.com" target="_blank">
-                    <span class="rank top3">1</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=国产电动车掀起全球出海热" target="_blank" data-platform="百度">
+                    <span class="news-rank hot">1</span>
+                    <div class="news-body">
                         <div class="news-title">国产电动车掀起全球出海热</div>
                         <div class="news-meta">
-                            <span class="platform-badge baidu">百度</span>
-                            <span class="heat-badge">550万</span>
-                            <span class="tag-badge">汽车</span>
+                            <span class="meta-platform">百度</span>
+                            <span class="meta-heat">550万</span>
+                            <span class="meta-tag ">汽车</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://tech.sina.com.cn" target="_blank">
-                    <span class="rank top3">2</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=美团Q1营收910亿元，经营亏损收窄至65亿元" target="_blank" data-platform="科技新闻">
+                    <span class="news-rank hot">2</span>
+                    <div class="news-body">
                         <div class="news-title">美团Q1营收910亿元，经营亏损收窄至65亿元</div>
                         <div class="news-meta">
-                            <span class="platform-badge tech">科技新闻</span>
-                            <span class="heat-badge">380万</span>
-                            <span class="tag-badge">财报</span>
+                            <span class="meta-platform">科技新闻</span>
+                            <span class="meta-heat">380万</span>
+                            <span class="meta-tag ">财报</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://tech.sina.com.cn" target="_blank">
-                    <span class="rank top3">3</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=追觅开放直接融资窗口，或最高融资70亿元" target="_blank" data-platform="科技新闻">
+                    <span class="news-rank hot">3</span>
+                    <div class="news-body">
                         <div class="news-title">追觅开放直接融资窗口，或最高融资70亿元</div>
                         <div class="news-meta">
-                            <span class="platform-badge tech">科技新闻</span>
-                            <span class="heat-badge">320万</span>
-                            <span class="tag-badge">融资</span>
+                            <span class="meta-platform">科技新闻</span>
+                            <span class="meta-heat">320万</span>
+                            <span class="meta-tag ">融资</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://top.baidu.com" target="_blank">
-                    <span class="rank top5">4</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=长三角正在疯狂建机场，4座民用运输机场密集通航" target="_blank" data-platform="百度">
+                    <span class="news-rank top">4</span>
+                    <div class="news-body">
                         <div class="news-title">长三角正在疯狂建机场，4座民用运输机场密集通航</div>
                         <div class="news-meta">
-                            <span class="platform-badge baidu">百度</span>
-                            <span class="heat-badge">521万</span>
-                            <span class="tag-badge">基建</span>
+                            <span class="meta-platform">百度</span>
+                            <span class="meta-heat">521万</span>
+                            <span class="meta-tag ">基建</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://tech.sina.com.cn" target="_blank">
-                    <span class="rank top5">5</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=天涯社区回归上线即被挤崩，访问人数剧增" target="_blank" data-platform="科技新闻">
+                    <span class="news-rank top">5</span>
+                    <div class="news-body">
                         <div class="news-title">天涯社区回归上线即被挤崩，访问人数剧增</div>
                         <div class="news-meta">
-                            <span class="platform-badge tech">科技新闻</span>
-                            <span class="heat-badge">280万</span>
-                            <span class="tag-badge">互联网</span>
+                            <span class="meta-platform">科技新闻</span>
+                            <span class="meta-heat">280万</span>
+                            <span class="meta-tag ">互联网</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.zhihu.com" target="_blank">
-                    <span class="rank normal">6</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=韩国SK海力士工厂突发火灾，市值刚突破1万亿美元" target="_blank" data-platform="知乎">
+                    <span class="news-rank ">6</span>
+                    <div class="news-body">
                         <div class="news-title">韩国SK海力士工厂突发火灾，市值刚突破1万亿美元</div>
                         <div class="news-meta">
-                            <span class="platform-badge zhihu">知乎</span>
-                            <span class="heat-badge">254万</span>
-                            <span class="tag-badge">半导体</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">254万</span>
+                            <span class="meta-tag ">半导体</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.zhihu.com" target="_blank">
-                    <span class="rank normal">7</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=油车降价、电车涨价，新能源车渗透率超60%" target="_blank" data-platform="知乎">
+                    <span class="news-rank ">7</span>
+                    <div class="news-body">
                         <div class="news-title">油车降价、电车涨价，新能源车渗透率超60%</div>
                         <div class="news-meta">
-                            <span class="platform-badge zhihu">知乎</span>
-                            <span class="heat-badge">86万</span>
-                            <span class="tag-badge">汽车</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">86万</span>
+                            <span class="meta-tag ">汽车</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.163.com" target="_blank">
-                    <span class="rank normal">8</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=库里官宣签约李宁十年！勇士两大核心都签约李宁" target="_blank" data-platform="网易">
+                    <span class="news-rank ">8</span>
+                    <div class="news-body">
                         <div class="news-title">库里官宣签约李宁十年！勇士两大核心都签约李宁</div>
                         <div class="news-meta">
-                            <span class="platform-badge 网易">网易</span>
-                            <span class="heat-badge">220万</span>
-                            <span class="tag-badge">体育商业</span>
+                            <span class="meta-platform">网易</span>
+                            <span class="meta-heat">220万</span>
+                            <span class="meta-tag ">体育商业</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
             </div>
         </div>
 
-        <div class="category-section" id="cat-4">
-            <div class="category-header" onclick="toggleSection(4)">
+        <div class="category" id="cat-4">
+            <div class="category-header" onclick="toggleCat(4)">
                 <span class="category-icon">🎭</span>
-                <span class="category-title" style="color: #ec4899">娱乐文化</span>
+                <span class="category-name">娱乐文化</span>
                 <span class="category-count">8 条</span>
-                <span class="toggle-icon">▼</span>
+                <span class="category-toggle">▼</span>
             </div>
             <div class="news-list">
 
-                <a class="news-item" href="https://top.baidu.com" target="_blank">
-                    <span class="rank top3">1</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=奚梦瑶与何猷君在法国补办婚礼" target="_blank" data-platform="百度">
+                    <span class="news-rank hot">1</span>
+                    <div class="news-body">
                         <div class="news-title">奚梦瑶与何猷君在法国补办婚礼</div>
                         <div class="news-meta">
-                            <span class="platform-badge baidu">百度</span>
-                            <span class="heat-badge">550万</span>
-                            <span class="tag-badge">明星</span>
+                            <span class="meta-platform">百度</span>
+                            <span class="meta-heat">550万</span>
+                            <span class="meta-tag ">明星</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.zhihu.com" target="_blank">
-                    <span class="rank top3">2</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=张凌赫南宁活动出意外，粉丝挤爆商场玻璃门5人受伤" target="_blank" data-platform="知乎">
+                    <span class="news-rank hot">2</span>
+                    <div class="news-body">
                         <div class="news-title">张凌赫南宁活动出意外，粉丝挤爆商场玻璃门5人受伤</div>
                         <div class="news-meta">
-                            <span class="platform-badge zhihu">知乎</span>
-                            <span class="heat-badge">87万</span>
-                            <span class="tag-badge">明星</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">87万</span>
+                            <span class="meta-tag ">明星</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.zhihu.com" target="_blank">
-                    <span class="rank top3">3</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=天涯论坛真的有那么厉害么？" target="_blank" data-platform="知乎">
+                    <span class="news-rank hot">3</span>
+                    <div class="news-body">
                         <div class="news-title">天涯论坛真的有那么厉害么？</div>
                         <div class="news-meta">
-                            <span class="platform-badge zhihu">知乎</span>
-                            <span class="heat-badge">358万</span>
-                            <span class="tag-badge">文化</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">358万</span>
+                            <span class="meta-tag ">文化</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.zhihu.com" target="_blank">
-                    <span class="rank top5">4</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=《大明王朝1566》陈洪讨好徐阶时，徐阶为何冷漠？" target="_blank" data-platform="知乎">
+                    <span class="news-rank top">4</span>
+                    <div class="news-body">
                         <div class="news-title">《大明王朝1566》陈洪讨好徐阶时，徐阶为何冷漠？</div>
                         <div class="news-meta">
-                            <span class="platform-badge zhihu">知乎</span>
-                            <span class="heat-badge">121万</span>
-                            <span class="tag-badge">影视</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">121万</span>
+                            <span class="meta-tag ">影视</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.zhihu.com" target="_blank">
-                    <span class="rank top5">5</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=黛玉为什么喜欢宝钗？" target="_blank" data-platform="知乎">
+                    <span class="news-rank top">5</span>
+                    <div class="news-body">
                         <div class="news-title">黛玉为什么喜欢宝钗？</div>
                         <div class="news-meta">
-                            <span class="platform-badge zhihu">知乎</span>
-                            <span class="heat-badge">85万</span>
-                            <span class="tag-badge">文学</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">85万</span>
+                            <span class="meta-tag ">文学</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.zhihu.com" target="_blank">
-                    <span class="rank normal">6</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=演员到底有多吃天赋？" target="_blank" data-platform="知乎">
+                    <span class="news-rank ">6</span>
+                    <div class="news-body">
                         <div class="news-title">演员到底有多吃天赋？</div>
                         <div class="news-meta">
-                            <span class="platform-badge zhihu">知乎</span>
-                            <span class="heat-badge">63万</span>
-                            <span class="tag-badge">影视</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">63万</span>
+                            <span class="meta-tag ">影视</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.zhihu.com" target="_blank">
-                    <span class="rank normal">7</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=为什么好像大家都不怎么批评「小字营销」了？" target="_blank" data-platform="知乎">
+                    <span class="news-rank ">7</span>
+                    <div class="news-body">
                         <div class="news-title">为什么好像大家都不怎么批评「小字营销」了？</div>
                         <div class="news-meta">
-                            <span class="platform-badge zhihu">知乎</span>
-                            <span class="heat-badge">109万</span>
-                            <span class="tag-badge">营销</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">109万</span>
+                            <span class="meta-tag ">营销</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.zhihu.com" target="_blank">
-                    <span class="rank normal">8</span>
-                    <div class="news-content">
+                <a class="news-item" href="https://www.google.com/search?q=高考结束后准大学生如何选一台能用四年的游戏本？" target="_blank" data-platform="知乎">
+                    <span class="news-rank ">8</span>
+                    <div class="news-body">
                         <div class="news-title">高考结束后准大学生如何选一台能用四年的游戏本？</div>
                         <div class="news-meta">
-                            <span class="platform-badge zhihu">知乎</span>
-                            <span class="heat-badge">59万</span>
-                            <span class="tag-badge">数码</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">59万</span>
+                            <span class="meta-tag ">数码</span>
                         </div>
                     </div>
-                    <span class="arrow">›</span>
+                    <span class="news-arrow">›</span>
                 </a>
 
             </div>
         </div>
 
         <div class="footer">
-            <p>数据来源：百度热搜、知乎热榜、微博热搜、科技资讯等 | 每日自动采集更新</p>
-            <p style="margin-top:8px">⏰ 下次更新：每日 12:16 CST</p>
+            <p>数据来源：百度热搜 · 知乎热榜 · 微博热搜 · 科技资讯</p>
+            <p>每日 12:16 CST 自动采集更新 · <a href="https://evelynnn0378.github.io/hot-news-dashboard/" target="_blank">在线看板</a></p>
         </div>
     </div>
-    
+
     <script>
-        function toggleSection(index) {
-            const section = document.getElementById('cat-' + index);
-            section.classList.toggle('collapsed');
+        function toggleCat(index) {
+            document.getElementById('cat-' + index).classList.toggle('collapsed');
         }
-        
-        // 平台筛选功能
-        document.querySelectorAll('.platform-tag').forEach(tag => {
-            tag.addEventListener('click', function() {
-                document.querySelectorAll('.platform-tag').forEach(t => t.classList.remove('active'));
+
+        // Platform filter
+        document.querySelectorAll('.filter-pill').forEach(pill => {
+            pill.addEventListener('click', function() {
+                document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
                 this.classList.add('active');
-                
-                const platform = this.textContent.trim();
+
+                const filter = this.dataset.filter;
                 const items = document.querySelectorAll('.news-item');
-                
-                if (platform.includes('全部')) {
+                const cats = document.querySelectorAll('.category');
+
+                if (filter === 'all') {
                     items.forEach(item => item.style.display = 'flex');
-                    document.querySelectorAll('.category-section').forEach(s => s.style.display = 'block');
+                    cats.forEach(cat => cat.style.display = 'block');
                     return;
                 }
-                
-                const platformMap = {
-                    '百度': '百度',
-                    '知乎': '知乎',
-                    '微博': '微博',
-                    '科技': '科技新闻',
-                    '新闻': '网易'
-                };
-                
-                const keyword = Object.keys(platformMap).find(k => platform.includes(k));
-                const searchText = keyword ? platformMap[keyword] : '';
-                
+
                 items.forEach(item => {
-                    const badge = item.querySelector('.platform-badge');
-                    if (badge && badge.textContent.includes(searchText)) {
+                    const platform = item.dataset.platform;
+                    if (platform && platform.includes(filter)) {
                         item.style.display = 'flex';
-                        item.closest('.category-section').style.display = 'block';
+                        item.closest('.category').style.display = 'block';
                     } else {
                         item.style.display = 'none';
                     }
                 });
-                
-                // 隐藏没有匹配项的分类
-                document.querySelectorAll('.category-section').forEach(section => {
-                    const visible = section.querySelectorAll('.news-item[style="display: flex;"]').length;
-                    if (visible === 0) section.style.display = 'none';
+
+                cats.forEach(cat => {
+                    const visible = cat.querySelectorAll('.news-item[style="display: flex;"]').length;
+                    if (visible === 0) cat.style.display = 'none';
                 });
             });
         });
