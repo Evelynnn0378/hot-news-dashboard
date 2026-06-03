@@ -3,719 +3,810 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>每日热点快讯 — 2026-06-03</title>
+    <title>每日热点简报 — 2026-06-03</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-deep: #010102;
-            --bg-page: #08090a;
-            --bg-panel: #0f1011;
-            --bg-surface: #191a1b;
-            --bg-hover: #28282c;
-            --text-primary: #f7f8f8;
-            --text-secondary: #d0d6e0;
-            --text-tertiary: #8a8f98;
-            --text-quaternary: #62666d;
-            --brand-indigo: #5e6ad2;
-            --brand-violet: #7170ff;
-            --brand-hover: #828fff;
-            --border-subtle: rgba(255,255,255,0.05);
-            --border-standard: rgba(255,255,255,0.08);
-            --success: #10b981;
-            --warning: #dd5b00;
-            --radius-sm: 6px;
-            --radius-md: 8px;
-            --radius-lg: 12px;
-            --radius-pill: 9999px;
+            --bg-deep: #0a0e1a;
+            --bg-card: rgba(255,255,255,0.03);
+            --bg-card-hover: rgba(255,255,255,0.06);
+            --text-primary: #f0f2f5;
+            --text-secondary: #a0a8b8;
+            --text-muted: #6b7280;
+            --accent-gold: #f5a623;
+            --accent-gold-light: #fbd38d;
+            --border-subtle: rgba(255,255,255,0.06);
+            --border-gold: rgba(245,166,35,0.3);
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
         }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            font-feature-settings: "cv01", "ss03";
-            background: var(--bg-page);
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-deep);
             color: var(--text-primary);
             min-height: 100vh;
-            line-height: 1.5;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
-        .container { max-width: 900px; margin: 0 auto; padding: 48px 24px; }
-        .header { margin-bottom: 40px; }
-        .header-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 24px;
+        
+        /* 背景层 */
+        .bg-layer {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 0;
+            background: 
+                linear-gradient(180deg, rgba(10,14,26,0.3) 0%, rgba(10,14,26,0.95) 60%, var(--bg-deep) 100%),
+                url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1920&q=80') center top / cover no-repeat;
+            pointer-events: none;
         }
-        .header h1 {
-            font-size: 32px;
-            font-weight: 510;
-            letter-spacing: -0.704px;
-            line-height: 1.13;
-            color: var(--text-primary);
+        
+        .bg-layer::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 400px;
+            background: linear-gradient(to top, var(--bg-deep), transparent);
         }
-        .header h1 span { color: var(--text-tertiary); font-weight: 400; }
-        .update-badge {
+        
+        /* 装饰线条 */
+        .deco-line {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            opacity: 0.4;
+            z-index: 1;
+        }
+        
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-top: 40px;
+        }
+        
+        .header-badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            font-weight: 510;
-            color: var(--text-quaternary);
-            background: var(--bg-surface);
-            border: 1px solid var(--border-standard);
-            border-radius: var(--radius-pill);
-            padding: 4px 12px;
+            gap: 8px;
+            background: rgba(245,166,35,0.1);
+            border: 1px solid var(--border-gold);
+            border-radius: 999px;
+            padding: 6px 18px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent-gold);
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
         }
-        .live-dot {
+        
+        .header-badge .sun-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent-gold-light), var(--accent-gold));
+            box-shadow: 0 0 12px rgba(245,166,35,0.5);
+        }
+        
+        .header h1 {
+            font-size: 52px;
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #fff 30%, var(--accent-gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header-sub {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+        
+        .header-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 8px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 999px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        
+        .header-date .dot {
             width: 6px;
             height: 6px;
-            background: var(--success);
+            background: var(--accent-gold);
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-        .header-sub {
-            font-size: 15px;
-            font-weight: 400;
-            color: var(--text-tertiary);
-            letter-spacing: -0.165px;
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
         }
-        .filter-bar {
+        
+        /* 分类导航 */
+        .nav-tabs {
             display: flex;
-            gap: 8px;
-            margin-bottom: 32px;
+            gap: 12px;
+            margin-bottom: 40px;
             flex-wrap: wrap;
+            justify-content: center;
         }
-        .filter-pill {
-            font-size: 12px;
-            font-weight: 510;
-            color: var(--text-tertiary);
-            background: transparent;
-            border: 1px solid rgb(35, 37, 42);
-            border-radius: var(--radius-pill);
-            padding: 4px 12px;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            font-family: inherit;
-        }
-        .filter-pill:hover {
-            color: var(--text-secondary);
-            border-color: var(--border-standard);
-            background: rgba(255,255,255,0.02);
-        }
-        .filter-pill.active {
-            color: var(--text-primary);
-            background: rgba(255,255,255,0.05);
-            border-color: var(--border-standard);
-        }
-        .category {
-            margin-bottom: 8px;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
+        
+        .nav-tab {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--bg-card);
             border: 1px solid var(--border-subtle);
-            background: var(--bg-panel);
+            border-radius: 999px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
+        
+        .nav-tab:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-gold);
+            color: var(--text-primary);
+        }
+        
+        .nav-tab.active {
+            background: rgba(245,166,35,0.1);
+            border-color: var(--border-gold);
+            color: var(--accent-gold);
+        }
+        
+        .nav-tab img {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+        
+        /* 分类区块 */
+        .category-section {
+            margin-bottom: 48px;
+        }
+        
         .category-header {
             display: flex;
             align-items: center;
-            padding: 14px 20px;
-            cursor: pointer;
-            transition: background 0.15s ease;
-            user-select: none;
+            gap: 16px;
+            margin-bottom: 24px;
         }
-        .category-header:hover { background: var(--bg-surface); }
-        .category-icon { font-size: 18px; margin-right: 10px; opacity: 0.9; }
-        .category-name {
-            font-size: 15px;
-            font-weight: 510;
-            color: var(--text-secondary);
-            flex: 1;
-            letter-spacing: -0.165px;
+        
+        .category-cover {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+            border: 1px solid var(--border-subtle);
         }
+        
+        .category-title {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+        }
+        
         .category-count {
-            font-size: 12px;
-            font-weight: 400;
-            color: var(--text-quaternary);
-            margin-right: 12px;
+            margin-left: auto;
+            font-size: 13px;
+            color: var(--text-muted);
+            background: var(--bg-card);
+            padding: 4px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--border-subtle);
         }
-        .category-toggle {
-            font-size: 12px;
-            color: var(--text-quaternary);
-            transition: transform 0.2s ease;
-            width: 16px;
-            text-align: center;
+        
+        /* 新闻卡片网格 */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 16px;
         }
-        .category.collapsed .category-toggle { transform: rotate(-90deg); }
-        .category.collapsed .news-list { display: none; }
-        .news-list { border-top: 1px solid var(--border-subtle); }
-        .news-item {
+        
+        .news-card {
             display: flex;
-            align-items: flex-start;
-            padding: 12px 20px;
-            border-bottom: 1px solid var(--border-subtle);
-            transition: background 0.1s ease;
+            gap: 14px;
+            padding: 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
             cursor: pointer;
             text-decoration: none;
             color: inherit;
         }
-        .news-item:last-child { border-bottom: none; }
-        .news-item:hover { background: rgba(255,255,255,0.02); }
-        .news-rank {
-            font-size: 12px;
-            font-weight: 510;
-            color: var(--text-quaternary);
-            min-width: 24px;
-            text-align: right;
-            margin-right: 14px;
-            margin-top: 2px;
+        
+        .news-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
         }
-        .news-rank.top { color: var(--text-secondary); }
-        .news-rank.hot { color: var(--brand-violet); }
-        .news-body { flex: 1; min-width: 0; }
+        
+        .news-thumb {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 1px solid var(--border-subtle);
+        }
+        
+        .news-body {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
         .news-title {
             font-size: 14px;
-            font-weight: 400;
-            color: var(--text-primary);
+            font-weight: 500;
             line-height: 1.5;
-            margin-bottom: 6px;
-            word-break: break-word;
+            color: var(--text-primary);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 10px;
         }
+        
         .news-meta {
             display: flex;
             align-items: center;
             gap: 10px;
             flex-wrap: wrap;
         }
+        
         .meta-platform {
             font-size: 11px;
-            font-weight: 510;
-            color: var(--text-quaternary);
-            letter-spacing: 0.048px;
+            font-weight: 500;
+            color: var(--text-muted);
+            padding: 2px 8px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 4px;
         }
+        
         .meta-heat {
             display: inline-flex;
             align-items: center;
-            gap: 3px;
+            gap: 4px;
             font-size: 11px;
-            font-weight: 510;
-            color: var(--warning);
+            font-weight: 600;
+            color: var(--accent-gold);
         }
+        
         .meta-heat::before {
-            content: "";
+            content: '';
             display: inline-block;
             width: 5px;
             height: 5px;
-            background: var(--warning);
+            background: var(--accent-gold);
             border-radius: 50%;
+            box-shadow: 0 0 6px rgba(245,166,35,0.6);
         }
+        
         .meta-tag {
             font-size: 10px;
-            font-weight: 510;
-            color: var(--text-tertiary);
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 2px;
-            padding: 1px 6px;
-            letter-spacing: 0.048px;
+            font-weight: 500;
+            color: var(--text-muted);
+            padding: 2px 8px;
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
         }
-        .meta-tag.brand {
-            color: var(--brand-violet);
-            background: rgba(94, 106, 210, 0.1);
-            border-color: rgba(94, 106, 210, 0.2);
-        }
-        .news-arrow {
-            margin-left: 8px;
-            color: var(--text-quaternary);
-            font-size: 13px;
-            opacity: 0;
-            transition: opacity 0.15s ease;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-        .news-item:hover .news-arrow { opacity: 1; }
+        
+        /* 底部 */
         .footer {
-            margin-top: 48px;
-            padding-top: 24px;
+            margin-top: 80px;
+            padding-top: 40px;
             border-top: 1px solid var(--border-subtle);
             text-align: center;
         }
+        
         .footer p {
-            font-size: 12px;
-            font-weight: 400;
-            color: var(--text-quaternary);
-            line-height: 1.8;
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 2;
         }
+        
         .footer a {
-            color: var(--text-tertiary);
+            color: var(--accent-gold);
             text-decoration: none;
-            transition: color 0.15s ease;
+            transition: opacity 0.2s;
         }
-        .footer a:hover { color: var(--text-secondary); }
+        
+        .footer a:hover { opacity: 0.8; }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 36px; }
+            .news-grid { grid-template-columns: 1fr; }
+            .container { padding: 40px 16px 60px; }
+        }
+        
+        /* 滚动条 */
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-page); }
-        ::-webkit-scrollbar-thumb { background: var(--bg-surface); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--bg-hover); }
-        @media (max-width: 640px) {
-            .container { padding: 24px 16px; }
-            .header h1 { font-size: 24px; letter-spacing: -0.288px; }
-            .news-item { padding: 10px 14px; }
-            .news-title { font-size: 13px; }
-        }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
     </style>
 </head>
 <body>
+    <div class="bg-layer"></div>
+    <div class="deco-line"></div>
+    
     <div class="container">
         <div class="header">
-            <div class="header-top">
-                <h1>每日热点 <span>快讯</span></h1>
-                <span class="update-badge">
-                    <span class="live-dot"></span>
-                    2026-06-03 12:16 CST
-                </span>
+            <div class="header-badge">
+                <span class="sun-icon"></span>
+                每日自动更新
             </div>
-            <p class="header-sub">聚合全网热点，一站式掌握资讯脉搏 · 每日自动更新</p>
+            <h1>每日热点简报</h1>
+            <p class="header-sub">聚合全网热点，一站式掌握资讯脉搏</p>
+            <div class="header-date">
+                <span class="dot"></span>
+                2026-06-03 · 已更新
+            </div>
         </div>
-        <div class="filter-bar">
-            <button class="filter-pill active" data-filter="all">全部</button>
-            <button class="filter-pill" data-filter="知乎">知乎</button>
-            <button class="filter-pill" data-filter="百度">百度</button>
-            <button class="filter-pill" data-filter="微博">微博</button>
-            <button class="filter-pill" data-filter="科技新闻">科技新闻</button>
+        
+        <div class="nav-tabs">
+
+            <button class="nav-tab" onclick="scrollToSection('tech')">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=100&q=80" alt="">
+                科技前沿
+            </button>
+
+            <button class="nav-tab" onclick="scrollToSection('society')">
+                <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=100&q=80" alt="">
+                社会民生
+            </button>
+
+            <button class="nav-tab" onclick="scrollToSection('world')">
+                <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=100&q=80" alt="">
+                国际局势
+            </button>
+
+            <button class="nav-tab" onclick="scrollToSection('finance')">
+                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=100&q=80" alt="">
+                财经商业
+            </button>
+
+            <button class="nav-tab" onclick="scrollToSection('entertainment')">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=100&q=80" alt="">
+                娱乐文化
+            </button>
+
         </div>
 
-        <div class="category" id="cat-0">
-            <div class="category-header" onclick="toggleCat(0)">
-                <span class="category-icon">🔬</span>
-                <span class="category-name">科技前沿</span>
+        <div class="category-section" id="tech">
+            <div class="category-header">
+                <img class="category-cover" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80" alt="科技前沿">
+                <h2 class="category-title">科技前沿</h2>
                 <span class="category-count">6 条</span>
-                <span class="category-toggle">▼</span>
             </div>
-            <div class="news-list">
+            <div class="news-grid">
 
-                <a class="news-item" href="https://www.google.com/search?q=我国'玻璃硬盘'率先小规模量产：一片能存360TB数据、近乎" target="_blank" data-platform="知乎">
-                    <span class="news-rank hot">1</span>
+                <a class="news-card" href="https://www.google.com/search?q=我国'玻璃硬盘'率先小规模量产：一片能存" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1555664424-778a69022365?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">我国'玻璃硬盘'率先小规模量产：一片能存360TB数据、近乎永久保存</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
                             <span class="meta-heat">5831万</span>
-                            <span class="meta-tag brand">科技</span>
+                            <span class="meta-tag">科技</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=如何评价 NVIDIA RTX Spark？" target="_blank" data-platform="知乎">
-                    <span class="news-rank hot">2</span>
+                <a class="news-card" href="https://www.google.com/search?q=如何评价 NVIDIA RTX Spar" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">如何评价 NVIDIA RTX Spark？</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
                             <span class="meta-heat">130万</span>
-                            <span class="meta-tag brand">芯片</span>
+                            <span class="meta-tag">芯片</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=宇树科技科创板IPO过会，这意味着什么？" target="_blank" data-platform="知乎">
-                    <span class="news-rank hot">3</span>
+                <a class="news-card" href="https://www.google.com/search?q=宇树科技科创板IPO过会，这意味着什么？" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">宇树科技科创板IPO过会，这意味着什么？</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
                             <span class="meta-heat">88万</span>
-                            <span class="meta-tag ">IPO</span>
+                            <span class="meta-tag">IPO</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=华为发布路由Q7电线版，PLC3.0技术实现全屋跑满千兆" target="_blank" data-platform="科技新闻">
-                    <span class="news-rank top">4</span>
+                <a class="news-card" href="https://www.google.com/search?q=华为发布路由Q7电线版，PLC3.0技术" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">华为发布路由Q7电线版，PLC3.0技术实现全屋跑满千兆</div>
                         <div class="news-meta">
                             <span class="meta-platform">科技新闻</span>
                             <span class="meta-heat">56万</span>
-                            <span class="meta-tag ">华为</span>
+                            <span class="meta-tag">华为</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=OpenAI完成$1220亿融资，筹备IPO，周活跃用户达9" target="_blank" data-platform="科技新闻">
-                    <span class="news-rank top">5</span>
+                <a class="news-card" href="https://www.google.com/search?q=OpenAI完成$1220亿融资，筹备I" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">OpenAI完成$1220亿融资，筹备IPO，周活跃用户达9亿</div>
                         <div class="news-meta">
                             <span class="meta-platform">科技新闻</span>
                             <span class="meta-heat">420万</span>
-                            <span class="meta-tag brand">AI</span>
+                            <span class="meta-tag">AI</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=Google发布Gemma 4开源模型，Apache 2.0" target="_blank" data-platform="科技新闻">
-                    <span class="news-rank ">6</span>
+                <a class="news-card" href="https://www.google.com/search?q=Google发布Gemma 4开源模型，" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1573804633927-bfcbcd9097d1?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">Google发布Gemma 4开源模型，Apache 2.0许可证</div>
                         <div class="news-meta">
                             <span class="meta-platform">科技新闻</span>
                             <span class="meta-heat">380万</span>
-                            <span class="meta-tag brand">AI</span>
+                            <span class="meta-tag">AI</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
             </div>
         </div>
 
-        <div class="category" id="cat-1">
-            <div class="category-header" onclick="toggleCat(1)">
-                <span class="category-icon">🏘️</span>
-                <span class="category-name">社会民生</span>
+        <div class="category-section" id="society">
+            <div class="category-header">
+                <img class="category-cover" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" alt="社会民生">
+                <h2 class="category-title">社会民生</h2>
                 <span class="category-count">6 条</span>
-                <span class="category-toggle">▼</span>
             </div>
-            <div class="news-list">
+            <div class="news-grid">
 
-                <a class="news-item" href="https://www.google.com/search?q=网暴救灾村支书戴「金耳环」的涉事人员被处罚" target="_blank" data-platform="知乎">
-                    <span class="news-rank hot">1</span>
+                <a class="news-card" href="https://www.google.com/search?q=网暴救灾村支书戴「金耳环」的涉事人员被处" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">网暴救灾村支书戴「金耳环」的涉事人员被处罚</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
                             <span class="meta-heat">145万</span>
-                            <span class="meta-tag ">社会</span>
+                            <span class="meta-tag">社会</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=中央财政下达育儿补贴补助资金999亿元，较上年增长10.6%" target="_blank" data-platform="知乎">
-                    <span class="news-rank hot">2</span>
+                <a class="news-card" href="https://www.google.com/search?q=中央财政下达育儿补贴补助资金999亿元，" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">中央财政下达育儿补贴补助资金999亿元，较上年增长10.6%</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
                             <span class="meta-heat">199万</span>
-                            <span class="meta-tag ">政策</span>
+                            <span class="meta-tag">政策</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=山西煤矿爆炸致82死，当地县委书记被查" target="_blank" data-platform="知乎">
-                    <span class="news-rank hot">3</span>
+                <a class="news-card" href="https://www.google.com/search?q=山西煤矿爆炸致82死，当地县委书记被查" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">山西煤矿爆炸致82死，当地县委书记被查</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
                             <span class="meta-heat">130万</span>
-                            <span class="meta-tag ">安全</span>
+                            <span class="meta-tag">安全</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=高考前的“最后一课”泪点满满" target="_blank" data-platform="百度">
-                    <span class="news-rank top">4</span>
+                <a class="news-card" href="https://www.google.com/search?q=高考前的“最后一课”泪点满满" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">高考前的“最后一课”泪点满满</div>
                         <div class="news-meta">
                             <span class="meta-platform">百度</span>
                             <span class="meta-heat">637万</span>
-                            <span class="meta-tag ">教育</span>
+                            <span class="meta-tag">教育</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=事业编考生笔试第1因围报被取消资格" target="_blank" data-platform="百度">
-                    <span class="news-rank top">5</span>
+                <a class="news-card" href="https://www.google.com/search?q=事业编考生笔试第1因围报被取消资格" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">事业编考生笔试第1因围报被取消资格</div>
                         <div class="news-meta">
                             <span class="meta-platform">百度</span>
                             <span class="meta-heat">627万</span>
-                            <span class="meta-tag ">职场</span>
+                            <span class="meta-tag">职场</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=游客嫌潮汕火锅太淡欲写5000字差评，店家称已吃七成无奈免单" target="_blank" data-platform="知乎">
-                    <span class="news-rank ">6</span>
+                <a class="news-card" href="https://www.google.com/search?q=游客嫌潮汕火锅太淡欲写5000字差评" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1555126634-323283e090fa?w=200&q=80" alt="">
                     <div class="news-body">
-                        <div class="news-title">游客嫌潮汕火锅太淡欲写5000字差评，店家称已吃七成无奈免单</div>
+                        <div class="news-title">游客嫌潮汕火锅太淡欲写5000字差评</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
                             <span class="meta-heat">65万</span>
-                            <span class="meta-tag ">消费</span>
+                            <span class="meta-tag">消费</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
             </div>
         </div>
 
-        <div class="category" id="cat-2">
-            <div class="category-header" onclick="toggleCat(2)">
-                <span class="category-icon">🌍</span>
-                <span class="category-name">国际局势</span>
+        <div class="category-section" id="world">
+            <div class="category-header">
+                <img class="category-cover" src="https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?w=800&q=80" alt="国际局势">
+                <h2 class="category-title">国际局势</h2>
                 <span class="category-count">5 条</span>
-                <span class="category-toggle">▼</span>
             </div>
-            <div class="news-list">
+            <div class="news-grid">
 
-                <a class="news-item" href="https://www.google.com/search?q=美加墨世界杯倒计时仅十天，墨西哥多个基建项目无法在开赛前完工" target="_blank" data-platform="知乎">
-                    <span class="news-rank hot">1</span>
+                <a class="news-card" href="https://www.google.com/search?q=美加墨世界杯倒计时仅十天，墨西哥多个基建" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">美加墨世界杯倒计时仅十天，墨西哥多个基建项目无法在开赛前完工</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
                             <span class="meta-heat">123万</span>
-                            <span class="meta-tag ">体育</span>
+                            <span class="meta-tag">体育</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=印度夏季频繁出现近50度极端高温" target="_blank" data-platform="知乎">
-                    <span class="news-rank hot">2</span>
+                <a class="news-card" href="https://www.google.com/search?q=印度夏季频繁出现近50度极端高温" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1504370805625-d32c54b16100?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">印度夏季频繁出现近50度极端高温</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
                             <span class="meta-heat">125万</span>
-                            <span class="meta-tag ">灾害</span>
+                            <span class="meta-tag">灾害</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=特朗普访华规格缩水，中方对美说不，美国先遣队已离京" target="_blank" data-platform="微博">
-                    <span class="news-rank hot">3</span>
+                <a class="news-card" href="https://www.google.com/search?q=特朗普访华规格缩水，中方对美说不，美国先" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1541872703-74c5e44318f2?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">特朗普访华规格缩水，中方对美说不，美国先遣队已离京</div>
                         <div class="news-meta">
                             <span class="meta-platform">微博</span>
                             <span class="meta-heat">580万</span>
-                            <span class="meta-tag ">外交</span>
+                            <span class="meta-tag">外交</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=伊朗分三次发射9枚导弹，攻击美军“林肯”号" target="_blank" data-platform="微博">
-                    <span class="news-rank top">4</span>
+                <a class="news-card" href="https://www.google.com/search?q=伊朗分三次发射9枚导弹，攻击美军“林肯”" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1595590424283-b8f17842773f?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">伊朗分三次发射9枚导弹，攻击美军“林肯”号</div>
                         <div class="news-meta">
                             <span class="meta-platform">微博</span>
                             <span class="meta-heat">520万</span>
-                            <span class="meta-tag brand">军事</span>
+                            <span class="meta-tag">军事</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=荷兰护卫舰雷达全瞎、通信中断，夹着尾巴逃了" target="_blank" data-platform="百度">
-                    <span class="news-rank top">5</span>
+                <a class="news-card" href="https://www.google.com/search?q=荷兰护卫舰雷达全瞎、通信中断，夹着尾巴逃" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">荷兰护卫舰雷达全瞎、通信中断，夹着尾巴逃了</div>
                         <div class="news-meta">
                             <span class="meta-platform">百度</span>
                             <span class="meta-heat">480万</span>
-                            <span class="meta-tag brand">军事</span>
+                            <span class="meta-tag">军事</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
             </div>
         </div>
 
-        <div class="category" id="cat-3">
-            <div class="category-header" onclick="toggleCat(3)">
-                <span class="category-icon">💰</span>
-                <span class="category-name">财经商业</span>
+        <div class="category-section" id="finance">
+            <div class="category-header">
+                <img class="category-cover" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80" alt="财经商业">
+                <h2 class="category-title">财经商业</h2>
                 <span class="category-count">6 条</span>
-                <span class="category-toggle">▼</span>
             </div>
-            <div class="news-list">
+            <div class="news-grid">
 
-                <a class="news-item" href="https://www.google.com/search?q=双汇创始人父子10年掏空式分红517亿，金额超越公司净利润" target="_blank" data-platform="知乎">
-                    <span class="news-rank hot">1</span>
+                <a class="news-card" href="https://www.google.com/search?q=双汇创始人父子10年掏空式分红517亿，" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">双汇创始人父子10年掏空式分红517亿，金额超越公司净利润</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
                             <span class="meta-heat">405万</span>
-                            <span class="meta-tag ">财经</span>
+                            <span class="meta-tag">财经</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=比亚迪5月汽车销量达38.3万辆年内首次增长" target="_blank" data-platform="知乎">
-                    <span class="news-rank hot">2</span>
+                <a class="news-card" href="https://www.google.com/search?q=比亚迪5月汽车销量达38.3万辆年内首次" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">比亚迪5月汽车销量达38.3万辆年内首次增长</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
                             <span class="meta-heat">214万</span>
-                            <span class="meta-tag ">汽车</span>
+                            <span class="meta-tag">汽车</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=美团一季度营收超910亿元，调整后净亏损49.7亿元" target="_blank" data-platform="知乎">
-                    <span class="news-rank hot">3</span>
+                <a class="news-card" href="https://www.google.com/search?q=美团一季度营收超910亿元，调整后净亏损" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">美团一季度营收超910亿元，调整后净亏损49.7亿元</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
                             <span class="meta-heat">78万</span>
-                            <span class="meta-tag ">财报</span>
+                            <span class="meta-tag">财报</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=零跑月交付破8万，小鹏、小米、理想、蔚来超3万" target="_blank" data-platform="知乎">
-                    <span class="news-rank top">4</span>
+                <a class="news-card" href="https://www.google.com/search?q=零跑月交付破8万，小鹏、小米、理想、蔚来" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">零跑月交付破8万，小鹏、小米、理想、蔚来超3万</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
                             <span class="meta-heat">56万</span>
-                            <span class="meta-tag ">汽车</span>
+                            <span class="meta-tag">汽车</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=大厂HR转行做求职陪跑，每单收费过万" target="_blank" data-platform="知乎">
-                    <span class="news-rank top">5</span>
+                <a class="news-card" href="https://www.google.com/search?q=大厂HR转行做求职陪跑，每单收费过万" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">大厂HR转行做求职陪跑，每单收费过万</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
                             <span class="meta-heat">78万</span>
-                            <span class="meta-tag ">职场</span>
+                            <span class="meta-tag">职场</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=Spotify再次宣布涨价，个人版上调一美元" target="_blank" data-platform="科技新闻">
-                    <span class="news-rank ">6</span>
+                <a class="news-card" href="https://www.google.com/search?q=Spotify再次宣布涨价，个人版上调一" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">Spotify再次宣布涨价，个人版上调一美元</div>
                         <div class="news-meta">
                             <span class="meta-platform">科技新闻</span>
                             <span class="meta-heat">220万</span>
-                            <span class="meta-tag ">互联网</span>
+                            <span class="meta-tag">互联网</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
             </div>
         </div>
 
-        <div class="category" id="cat-4">
-            <div class="category-header" onclick="toggleCat(4)">
-                <span class="category-icon">🎭</span>
-                <span class="category-name">娱乐文化</span>
+        <div class="category-section" id="entertainment">
+            <div class="category-header">
+                <img class="category-cover" src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80" alt="娱乐文化">
+                <h2 class="category-title">娱乐文化</h2>
                 <span class="category-count">6 条</span>
-                <span class="category-toggle">▼</span>
             </div>
-            <div class="news-list">
+            <div class="news-grid">
 
-                <a class="news-item" href="https://www.google.com/search?q=《三国演义》司马懿饰演者魏宗万去世" target="_blank" data-platform="知乎">
-                    <span class="news-rank hot">1</span>
+                <a class="news-card" href="https://www.google.com/search?q=《三国演义》司马懿饰演者魏宗万去世" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">《三国演义》司马懿饰演者魏宗万去世</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
                             <span class="meta-heat">296万</span>
-                            <span class="meta-tag ">影视</span>
+                            <span class="meta-tag">影视</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=美加墨世界杯球员身价榜公布，亚马尔超4亿美元高居榜首" target="_blank" data-platform="知乎">
-                    <span class="news-rank hot">2</span>
+                <a class="news-card" href="https://www.google.com/search?q=美加墨世界杯球员身价榜公布，亚马尔超4亿" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">美加墨世界杯球员身价榜公布，亚马尔超4亿美元高居榜首</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
                             <span class="meta-heat">136万</span>
-                            <span class="meta-tag ">体育</span>
+                            <span class="meta-tag">体育</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=为什么英语「black tea」会被中国人翻译为「红茶」？" target="_blank" data-platform="知乎">
-                    <span class="news-rank hot">3</span>
+                <a class="news-card" href="https://www.google.com/search?q=为什么英语「black tea」会被中国" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">为什么英语「black tea」会被中国人翻译为「红茶」？</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
                             <span class="meta-heat">379万</span>
-                            <span class="meta-tag ">文化</span>
+                            <span class="meta-tag">文化</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=夏威夷野鸡泛滥数量或超几十万只，政府诱捕一只要花超100美元" target="_blank" data-platform="知乎">
-                    <span class="news-rank top">4</span>
+                <a class="news-card" href="https://www.google.com/search?q=夏威夷野鸡泛滥数量或超几十万只，政府诱捕" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">夏威夷野鸡泛滥数量或超几十万只，政府诱捕一只要花超100美元</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
                             <span class="meta-heat">680万</span>
-                            <span class="meta-tag ">奇闻</span>
+                            <span class="meta-tag">奇闻</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=如何看待《奔跑吧》等综艺嘉宾安全带被曝是后期P图？" target="_blank" data-platform="知乎">
-                    <span class="news-rank top">5</span>
+                <a class="news-card" href="https://www.google.com/search?q=如何看待《奔跑吧》等综艺嘉宾安全带被曝是" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">如何看待《奔跑吧》等综艺嘉宾安全带被曝是后期P图？</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
                             <span class="meta-heat">78万</span>
-                            <span class="meta-tag ">娱乐</span>
+                            <span class="meta-tag">娱乐</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=老宅被亲戚偷装光伏板女子崩溃痛哭" target="_blank" data-platform="微博">
-                    <span class="news-rank ">6</span>
+                <a class="news-card" href="https://www.google.com/search?q=老宅被亲戚偷装光伏板女子崩溃痛哭" target="_blank">
+                    <img class="news-thumb" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=200&q=80" alt="">
                     <div class="news-body">
                         <div class="news-title">老宅被亲戚偷装光伏板女子崩溃痛哭</div>
                         <div class="news-meta">
                             <span class="meta-platform">微博</span>
                             <span class="meta-heat">307万</span>
-                            <span class="meta-tag ">社会</span>
+                            <span class="meta-tag">社会</span>
                         </div>
                     </div>
-                    <span class="news-arrow">›</span>
                 </a>
 
             </div>
@@ -726,37 +817,11 @@
             <p>每日 12:16 CST 自动采集更新 · <a href="https://evelynnn0378.github.io/hot-news-dashboard/" target="_blank">在线看板</a></p>
         </div>
     </div>
+    
     <script>
-        function toggleCat(index) {
-            document.getElementById('cat-' + index).classList.toggle('collapsed');
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-        document.querySelectorAll('.filter-pill').forEach(pill => {
-            pill.addEventListener('click', function() {
-                document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-                this.classList.add('active');
-                const filter = this.dataset.filter;
-                const items = document.querySelectorAll('.news-item');
-                const cats = document.querySelectorAll('.category');
-                if (filter === 'all') {
-                    items.forEach(item => item.style.display = 'flex');
-                    cats.forEach(cat => cat.style.display = 'block');
-                    return;
-                }
-                items.forEach(item => {
-                    const platform = item.dataset.platform;
-                    if (platform && platform.includes(filter)) {
-                        item.style.display = 'flex';
-                        item.closest('.category').style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-                cats.forEach(cat => {
-                    const visible = cat.querySelectorAll('.news-item[style="display: flex;"]').length;
-                    if (visible === 0) cat.style.display = 'none';
-                });
-            });
-        });
     </script>
 </body>
 </html>
