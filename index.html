@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>每日热点快讯 — Linear</title>
+    <title>每日热点快讯 — 2026-06-03</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -23,7 +22,6 @@
             --brand-hover: #828fff;
             --border-subtle: rgba(255,255,255,0.05);
             --border-standard: rgba(255,255,255,0.08);
-            --border-prominent: rgb(36, 40, 44);
             --success: #10b981;
             --warning: #dd5b00;
             --radius-sm: 6px;
@@ -31,13 +29,7 @@
             --radius-lg: 12px;
             --radius-pill: 9999px;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             font-feature-settings: "cv01", "ss03";
@@ -47,25 +39,14 @@
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
         }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 48px 24px;
-        }
-
-        /* Header */
-        .header {
-            margin-bottom: 40px;
-        }
-
+        .container { max-width: 900px; margin: 0 auto; padding: 48px 24px; }
+        .header { margin-bottom: 40px; }
         .header-top {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 24px;
         }
-
         .header h1 {
             font-size: 32px;
             font-weight: 510;
@@ -73,12 +54,7 @@
             line-height: 1.13;
             color: var(--text-primary);
         }
-
-        .header h1 span {
-            color: var(--text-tertiary);
-            font-weight: 400;
-        }
-
+        .header h1 span { color: var(--text-tertiary); font-weight: 400; }
         .update-badge {
             display: inline-flex;
             align-items: center;
@@ -91,7 +67,6 @@
             border-radius: var(--radius-pill);
             padding: 4px 12px;
         }
-
         .live-dot {
             width: 6px;
             height: 6px;
@@ -99,27 +74,19 @@
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
         .header-sub {
             font-size: 15px;
             font-weight: 400;
             color: var(--text-tertiary);
             letter-spacing: -0.165px;
         }
-
-        /* Platform Filter */
         .filter-bar {
             display: flex;
             gap: 8px;
             margin-bottom: 32px;
             flex-wrap: wrap;
         }
-
         .filter-pill {
             font-size: 12px;
             font-weight: 510;
@@ -131,22 +98,17 @@
             cursor: pointer;
             transition: all 0.15s ease;
             font-family: inherit;
-            font-feature-settings: inherit;
         }
-
         .filter-pill:hover {
             color: var(--text-secondary);
             border-color: var(--border-standard);
             background: rgba(255,255,255,0.02);
         }
-
         .filter-pill.active {
             color: var(--text-primary);
             background: rgba(255,255,255,0.05);
             border-color: var(--border-standard);
         }
-
-        /* Category Section */
         .category {
             margin-bottom: 8px;
             border-radius: var(--radius-lg);
@@ -154,7 +116,6 @@
             border: 1px solid var(--border-subtle);
             background: var(--bg-panel);
         }
-
         .category-header {
             display: flex;
             align-items: center;
@@ -163,17 +124,8 @@
             transition: background 0.15s ease;
             user-select: none;
         }
-
-        .category-header:hover {
-            background: var(--bg-surface);
-        }
-
-        .category-icon {
-            font-size: 18px;
-            margin-right: 10px;
-            opacity: 0.9;
-        }
-
+        .category-header:hover { background: var(--bg-surface); }
+        .category-icon { font-size: 18px; margin-right: 10px; opacity: 0.9; }
         .category-name {
             font-size: 15px;
             font-weight: 510;
@@ -181,14 +133,12 @@
             flex: 1;
             letter-spacing: -0.165px;
         }
-
         .category-count {
             font-size: 12px;
             font-weight: 400;
             color: var(--text-quaternary);
             margin-right: 12px;
         }
-
         .category-toggle {
             font-size: 12px;
             color: var(--text-quaternary);
@@ -196,20 +146,9 @@
             width: 16px;
             text-align: center;
         }
-
-        .category.collapsed .category-toggle {
-            transform: rotate(-90deg);
-        }
-
-        .category.collapsed .news-list {
-            display: none;
-        }
-
-        /* News List */
-        .news-list {
-            border-top: 1px solid var(--border-subtle);
-        }
-
+        .category.collapsed .category-toggle { transform: rotate(-90deg); }
+        .category.collapsed .news-list { display: none; }
+        .news-list { border-top: 1px solid var(--border-subtle); }
         .news-item {
             display: flex;
             align-items: flex-start;
@@ -220,15 +159,8 @@
             text-decoration: none;
             color: inherit;
         }
-
-        .news-item:last-child {
-            border-bottom: none;
-        }
-
-        .news-item:hover {
-            background: rgba(255,255,255,0.02);
-        }
-
+        .news-item:last-child { border-bottom: none; }
+        .news-item:hover { background: rgba(255,255,255,0.02); }
         .news-rank {
             font-size: 12px;
             font-weight: 510;
@@ -237,17 +169,10 @@
             text-align: right;
             margin-right: 14px;
             margin-top: 2px;
-            font-feature-settings: "tnum";
         }
-
         .news-rank.top { color: var(--text-secondary); }
         .news-rank.hot { color: var(--brand-violet); }
-
-        .news-body {
-            flex: 1;
-            min-width: 0;
-        }
-
+        .news-body { flex: 1; min-width: 0; }
         .news-title {
             font-size: 14px;
             font-weight: 400;
@@ -256,21 +181,18 @@
             margin-bottom: 6px;
             word-break: break-word;
         }
-
         .news-meta {
             display: flex;
             align-items: center;
             gap: 10px;
             flex-wrap: wrap;
         }
-
         .meta-platform {
             font-size: 11px;
             font-weight: 510;
             color: var(--text-quaternary);
             letter-spacing: 0.048px;
         }
-
         .meta-heat {
             display: inline-flex;
             align-items: center;
@@ -279,7 +201,6 @@
             font-weight: 510;
             color: var(--warning);
         }
-
         .meta-heat::before {
             content: "";
             display: inline-block;
@@ -288,7 +209,6 @@
             background: var(--warning);
             border-radius: 50%;
         }
-
         .meta-tag {
             font-size: 10px;
             font-weight: 510;
@@ -299,13 +219,11 @@
             padding: 1px 6px;
             letter-spacing: 0.048px;
         }
-
         .meta-tag.brand {
             color: var(--brand-violet);
             background: rgba(94, 106, 210, 0.1);
             border-color: rgba(94, 106, 210, 0.2);
         }
-
         .news-arrow {
             margin-left: 8px;
             color: var(--text-quaternary);
@@ -315,66 +233,34 @@
             flex-shrink: 0;
             margin-top: 2px;
         }
-
-        .news-item:hover .news-arrow {
-            opacity: 1;
-        }
-
-        /* Footer */
+        .news-item:hover .news-arrow { opacity: 1; }
         .footer {
             margin-top: 48px;
             padding-top: 24px;
             border-top: 1px solid var(--border-subtle);
             text-align: center;
         }
-
         .footer p {
             font-size: 12px;
             font-weight: 400;
             color: var(--text-quaternary);
             line-height: 1.8;
         }
-
         .footer a {
             color: var(--text-tertiary);
             text-decoration: none;
             transition: color 0.15s ease;
         }
-
-        .footer a:hover {
-            color: var(--text-secondary);
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-page);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--bg-surface);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--bg-hover);
-        }
-
-        /* Responsive */
+        .footer a:hover { color: var(--text-secondary); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-page); }
+        ::-webkit-scrollbar-thumb { background: var(--bg-surface); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--bg-hover); }
         @media (max-width: 640px) {
-            .container {
-                padding: 24px 16px;
-            }
-            .header h1 {
-                font-size: 24px;
-                letter-spacing: -0.288px;
-            }
-            .news-item {
-                padding: 10px 14px;
-            }
-            .news-title {
-                font-size: 13px;
-            }
+            .container { padding: 24px 16px; }
+            .header h1 { font-size: 24px; letter-spacing: -0.288px; }
+            .news-item { padding: 10px 14px; }
+            .news-title { font-size: 13px; }
         }
     </style>
 </head>
@@ -385,128 +271,100 @@
                 <h1>每日热点 <span>快讯</span></h1>
                 <span class="update-badge">
                     <span class="live-dot"></span>
-                    2026-06-02 12:16 CST
+                    2026-06-03 12:16 CST
                 </span>
             </div>
             <p class="header-sub">聚合全网热点，一站式掌握资讯脉搏 · 每日自动更新</p>
         </div>
-
         <div class="filter-bar">
             <button class="filter-pill active" data-filter="all">全部</button>
             <button class="filter-pill" data-filter="知乎">知乎</button>
             <button class="filter-pill" data-filter="百度">百度</button>
             <button class="filter-pill" data-filter="微博">微博</button>
             <button class="filter-pill" data-filter="科技新闻">科技新闻</button>
-            <button class="filter-pill" data-filter="网易">网易</button>
         </div>
 
         <div class="category" id="cat-0">
             <div class="category-header" onclick="toggleCat(0)">
                 <span class="category-icon">🔬</span>
                 <span class="category-name">科技前沿</span>
-                <span class="category-count">8 条</span>
+                <span class="category-count">6 条</span>
                 <span class="category-toggle">▼</span>
             </div>
             <div class="news-list">
 
-                <a class="news-item" href="https://www.google.com/search?q=豆包预计6月下旬正式收费，基础功能永久免费" target="_blank" data-platform="知乎/百度">
+                <a class="news-item" href="https://www.google.com/search?q=我国'玻璃硬盘'率先小规模量产：一片能存360TB数据、近乎" target="_blank" data-platform="知乎">
                     <span class="news-rank hot">1</span>
                     <div class="news-body">
-                        <div class="news-title">豆包预计6月下旬正式收费，基础功能永久免费</div>
+                        <div class="news-title">我国'玻璃硬盘'率先小规模量产：一片能存360TB数据、近乎永久保存</div>
                         <div class="news-meta">
-                            <span class="meta-platform">知乎/百度</span>
-                            <span class="meta-heat">1121万</span>
-                            <span class="meta-tag brand">AI</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">5831万</span>
+                            <span class="meta-tag brand">科技</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=黄仁勋联手宇树打造1.8米人形机器人，英伟达提供「大脑」" target="_blank" data-platform="百度/知乎">
+                <a class="news-item" href="https://www.google.com/search?q=如何评价 NVIDIA RTX Spark？" target="_blank" data-platform="知乎">
                     <span class="news-rank hot">2</span>
                     <div class="news-body">
-                        <div class="news-title">黄仁勋联手宇树打造1.8米人形机器人，英伟达提供「大脑」</div>
+                        <div class="news-title">如何评价 NVIDIA RTX Spark？</div>
                         <div class="news-meta">
-                            <span class="meta-platform">百度/知乎</span>
-                            <span class="meta-heat">780万</span>
-                            <span class="meta-tag ">机器人</span>
-                        </div>
-                    </div>
-                    <span class="news-arrow">›</span>
-                </a>
-
-                <a class="news-item" href="https://www.google.com/search?q=英伟达RTX Spark PC处理器正式发布：20核CPU+" target="_blank" data-platform="科技新闻">
-                    <span class="news-rank hot">3</span>
-                    <div class="news-body">
-                        <div class="news-title">英伟达RTX Spark PC处理器正式发布：20核CPU+RTX GPU</div>
-                        <div class="news-meta">
-                            <span class="meta-platform">科技新闻</span>
-                            <span class="meta-heat">650万</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">130万</span>
                             <span class="meta-tag brand">芯片</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=宇树科技科创板IPO顺利过会，符合上市发行条件" target="_blank" data-platform="科技新闻">
-                    <span class="news-rank top">4</span>
+                <a class="news-item" href="https://www.google.com/search?q=宇树科技科创板IPO过会，这意味着什么？" target="_blank" data-platform="知乎">
+                    <span class="news-rank hot">3</span>
                     <div class="news-body">
-                        <div class="news-title">宇树科技科创板IPO顺利过会，符合上市发行条件</div>
+                        <div class="news-title">宇树科技科创板IPO过会，这意味着什么？</div>
                         <div class="news-meta">
-                            <span class="meta-platform">科技新闻</span>
-                            <span class="meta-heat">520万</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">88万</span>
                             <span class="meta-tag ">IPO</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=阿里发布Qwen3.7-Plus：文本、视觉能力大幅提升" target="_blank" data-platform="科技新闻">
-                    <span class="news-rank top">5</span>
+                <a class="news-item" href="https://www.google.com/search?q=华为发布路由Q7电线版，PLC3.0技术实现全屋跑满千兆" target="_blank" data-platform="科技新闻">
+                    <span class="news-rank top">4</span>
                     <div class="news-body">
-                        <div class="news-title">阿里发布Qwen3.7-Plus：文本、视觉能力大幅提升</div>
+                        <div class="news-title">华为发布路由Q7电线版，PLC3.0技术实现全屋跑满千兆</div>
                         <div class="news-meta">
                             <span class="meta-platform">科技新闻</span>
-                            <span class="meta-heat">480万</span>
-                            <span class="meta-tag brand">AI</span>
-                        </div>
-                    </div>
-                    <span class="news-arrow">›</span>
-                </a>
-
-                <a class="news-item" href="https://www.google.com/search?q=华为nova 16全场景发布会：鸿蒙智家打造会思考的家" target="_blank" data-platform="科技新闻">
-                    <span class="news-rank ">6</span>
-                    <div class="news-body">
-                        <div class="news-title">华为nova 16全场景发布会：鸿蒙智家打造会思考的家</div>
-                        <div class="news-meta">
-                            <span class="meta-platform">科技新闻</span>
-                            <span class="meta-heat">420万</span>
+                            <span class="meta-heat">56万</span>
                             <span class="meta-tag ">华为</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=OpenAI遭美佛州总检察长起诉，理由是「AI产生危害」" target="_blank" data-platform="科技新闻">
-                    <span class="news-rank ">7</span>
+                <a class="news-item" href="https://www.google.com/search?q=OpenAI完成$1220亿融资，筹备IPO，周活跃用户达9" target="_blank" data-platform="科技新闻">
+                    <span class="news-rank top">5</span>
                     <div class="news-body">
-                        <div class="news-title">OpenAI遭美佛州总检察长起诉，理由是「AI产生危害」</div>
+                        <div class="news-title">OpenAI完成$1220亿融资，筹备IPO，周活跃用户达9亿</div>
                         <div class="news-meta">
                             <span class="meta-platform">科技新闻</span>
-                            <span class="meta-heat">380万</span>
+                            <span class="meta-heat">420万</span>
                             <span class="meta-tag brand">AI</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=微软将在Build开发者大会发布全新AI模型与Windows" target="_blank" data-platform="科技新闻">
-                    <span class="news-rank ">8</span>
+                <a class="news-item" href="https://www.google.com/search?q=Google发布Gemma 4开源模型，Apache 2.0" target="_blank" data-platform="科技新闻">
+                    <span class="news-rank ">6</span>
                     <div class="news-body">
-                        <div class="news-title">微软将在Build开发者大会发布全新AI模型与Windows升级</div>
+                        <div class="news-title">Google发布Gemma 4开源模型，Apache 2.0许可证</div>
                         <div class="news-meta">
                             <span class="meta-platform">科技新闻</span>
-                            <span class="meta-heat">350万</span>
+                            <span class="meta-heat">380万</span>
                             <span class="meta-tag brand">AI</span>
                         </div>
                     </div>
@@ -520,109 +378,83 @@
             <div class="category-header" onclick="toggleCat(1)">
                 <span class="category-icon">🏘️</span>
                 <span class="category-name">社会民生</span>
-                <span class="category-count">8 条</span>
+                <span class="category-count">6 条</span>
                 <span class="category-toggle">▼</span>
             </div>
             <div class="news-list">
 
-                <a class="news-item" href="https://www.google.com/search?q=网暴救灾村干部戴「金耳环」者被罚" target="_blank" data-platform="百度">
+                <a class="news-item" href="https://www.google.com/search?q=网暴救灾村支书戴「金耳环」的涉事人员被处罚" target="_blank" data-platform="知乎">
                     <span class="news-rank hot">1</span>
                     <div class="news-body">
-                        <div class="news-title">网暴救灾村干部戴「金耳环」者被罚</div>
+                        <div class="news-title">网暴救灾村支书戴「金耳环」的涉事人员被处罚</div>
                         <div class="news-meta">
-                            <span class="meta-platform">百度</span>
-                            <span class="meta-heat">771万</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">145万</span>
                             <span class="meta-tag ">社会</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=00后班主任把垫底班带到年级第一" target="_blank" data-platform="百度">
+                <a class="news-item" href="https://www.google.com/search?q=中央财政下达育儿补贴补助资金999亿元，较上年增长10.6%" target="_blank" data-platform="知乎">
                     <span class="news-rank hot">2</span>
                     <div class="news-body">
-                        <div class="news-title">00后班主任把垫底班带到年级第一</div>
+                        <div class="news-title">中央财政下达育儿补贴补助资金999亿元，较上年增长10.6%</div>
+                        <div class="news-meta">
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">199万</span>
+                            <span class="meta-tag ">政策</span>
+                        </div>
+                    </div>
+                    <span class="news-arrow">›</span>
+                </a>
+
+                <a class="news-item" href="https://www.google.com/search?q=山西煤矿爆炸致82死，当地县委书记被查" target="_blank" data-platform="知乎">
+                    <span class="news-rank hot">3</span>
+                    <div class="news-body">
+                        <div class="news-title">山西煤矿爆炸致82死，当地县委书记被查</div>
+                        <div class="news-meta">
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">130万</span>
+                            <span class="meta-tag ">安全</span>
+                        </div>
+                    </div>
+                    <span class="news-arrow">›</span>
+                </a>
+
+                <a class="news-item" href="https://www.google.com/search?q=高考前的“最后一课”泪点满满" target="_blank" data-platform="百度">
+                    <span class="news-rank top">4</span>
+                    <div class="news-body">
+                        <div class="news-title">高考前的“最后一课”泪点满满</div>
                         <div class="news-meta">
                             <span class="meta-platform">百度</span>
-                            <span class="meta-heat">761万</span>
+                            <span class="meta-heat">637万</span>
                             <span class="meta-tag ">教育</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=大厂又曝断指计划，年薪三倍挖人后试用期解雇" target="_blank" data-platform="知乎">
-                    <span class="news-rank hot">3</span>
+                <a class="news-item" href="https://www.google.com/search?q=事业编考生笔试第1因围报被取消资格" target="_blank" data-platform="百度">
+                    <span class="news-rank top">5</span>
                     <div class="news-body">
-                        <div class="news-title">大厂又曝断指计划，年薪三倍挖人后试用期解雇</div>
+                        <div class="news-title">事业编考生笔试第1因围报被取消资格</div>
                         <div class="news-meta">
-                            <span class="meta-platform">知乎</span>
-                            <span class="meta-heat">464万</span>
+                            <span class="meta-platform">百度</span>
+                            <span class="meta-heat">627万</span>
                             <span class="meta-tag ">职场</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=中学教室热似「蒸笼」校方回应：电容不足" target="_blank" data-platform="百度">
-                    <span class="news-rank top">4</span>
-                    <div class="news-body">
-                        <div class="news-title">中学教室热似「蒸笼」校方回应：电容不足</div>
-                        <div class="news-meta">
-                            <span class="meta-platform">百度</span>
-                            <span class="meta-heat">542万</span>
-                            <span class="meta-tag ">教育</span>
-                        </div>
-                    </div>
-                    <span class="news-arrow">›</span>
-                </a>
-
-                <a class="news-item" href="https://www.google.com/search?q=一碗剩米饭吃进ICU，广东50岁男子严重休克" target="_blank" data-platform="百度">
-                    <span class="news-rank top">5</span>
-                    <div class="news-body">
-                        <div class="news-title">一碗剩米饭吃进ICU，广东50岁男子严重休克</div>
-                        <div class="news-meta">
-                            <span class="meta-platform">百度</span>
-                            <span class="meta-heat">579万</span>
-                            <span class="meta-tag ">健康</span>
-                        </div>
-                    </div>
-                    <span class="news-arrow">›</span>
-                </a>
-
-                <a class="news-item" href="https://www.google.com/search?q=「一针瘦十斤」真的适合所有人吗？减肥针乱象" target="_blank" data-platform="百度">
+                <a class="news-item" href="https://www.google.com/search?q=游客嫌潮汕火锅太淡欲写5000字差评，店家称已吃七成无奈免单" target="_blank" data-platform="知乎">
                     <span class="news-rank ">6</span>
                     <div class="news-body">
-                        <div class="news-title">「一针瘦十斤」真的适合所有人吗？减肥针乱象</div>
+                        <div class="news-title">游客嫌潮汕火锅太淡欲写5000字差评，店家称已吃七成无奈免单</div>
                         <div class="news-meta">
-                            <span class="meta-platform">百度</span>
-                            <span class="meta-heat">333万</span>
-                            <span class="meta-tag ">健康</span>
-                        </div>
-                    </div>
-                    <span class="news-arrow">›</span>
-                </a>
-
-                <a class="news-item" href="https://www.google.com/search?q=公示治理完成，复核水体仍为重度黑臭" target="_blank" data-platform="百度">
-                    <span class="news-rank ">7</span>
-                    <div class="news-body">
-                        <div class="news-title">公示治理完成，复核水体仍为重度黑臭</div>
-                        <div class="news-meta">
-                            <span class="meta-platform">百度</span>
-                            <span class="meta-heat">320万</span>
-                            <span class="meta-tag ">环保</span>
-                        </div>
-                    </div>
-                    <span class="news-arrow">›</span>
-                </a>
-
-                <a class="news-item" href="https://www.google.com/search?q=游客嫌潮汕火锅太淡欲写5000字差评" target="_blank" data-platform="百度">
-                    <span class="news-rank ">8</span>
-                    <div class="news-body">
-                        <div class="news-title">游客嫌潮汕火锅太淡欲写5000字差评</div>
-                        <div class="news-meta">
-                            <span class="meta-platform">百度</span>
-                            <span class="meta-heat">628万</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">65万</span>
                             <span class="meta-tag ">消费</span>
                         </div>
                     </div>
@@ -636,110 +468,71 @@
             <div class="category-header" onclick="toggleCat(2)">
                 <span class="category-icon">🌍</span>
                 <span class="category-name">国际局势</span>
-                <span class="category-count">8 条</span>
+                <span class="category-count">5 条</span>
                 <span class="category-toggle">▼</span>
             </div>
             <div class="news-list">
 
-                <a class="news-item" href="https://www.google.com/search?q=台湾岛内统一声浪持续高涨，独派团体宣布调整立场" target="_blank" data-platform="百度">
+                <a class="news-item" href="https://www.google.com/search?q=美加墨世界杯倒计时仅十天，墨西哥多个基建项目无法在开赛前完工" target="_blank" data-platform="知乎">
                     <span class="news-rank hot">1</span>
                     <div class="news-body">
-                        <div class="news-title">台湾岛内统一声浪持续高涨，独派团体宣布调整立场</div>
+                        <div class="news-title">美加墨世界杯倒计时仅十天，墨西哥多个基建项目无法在开赛前完工</div>
                         <div class="news-meta">
-                            <span class="meta-platform">百度</span>
-                            <span class="meta-heat">780万</span>
-                            <span class="meta-tag brand">时政</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">123万</span>
+                            <span class="meta-tag ">体育</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=俄对乌克兰全境发动空袭，造成多人伤亡" target="_blank" data-platform="百度">
+                <a class="news-item" href="https://www.google.com/search?q=印度夏季频繁出现近50度极端高温" target="_blank" data-platform="知乎">
                     <span class="news-rank hot">2</span>
                     <div class="news-body">
-                        <div class="news-title">俄对乌克兰全境发动空袭，造成多人伤亡</div>
-                        <div class="news-meta">
-                            <span class="meta-platform">百度</span>
-                            <span class="meta-heat">618万</span>
-                            <span class="meta-tag brand">军事</span>
-                        </div>
-                    </div>
-                    <span class="news-arrow">›</span>
-                </a>
-
-                <a class="news-item" href="https://www.google.com/search?q=伊朗暂停通过中间人同美国的对话，计划封锁霍尔木兹海峡" target="_blank" data-platform="知乎">
-                    <span class="news-rank hot">3</span>
-                    <div class="news-body">
-                        <div class="news-title">伊朗暂停通过中间人同美国的对话，计划封锁霍尔木兹海峡</div>
+                        <div class="news-title">印度夏季频繁出现近50度极端高温</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
-                            <span class="meta-heat">136万</span>
-                            <span class="meta-tag brand">军事</span>
-                        </div>
-                    </div>
-                    <span class="news-arrow">›</span>
-                </a>
-
-                <a class="news-item" href="https://www.google.com/search?q=以色列扩大在黎巴嫩的军事行动，停火希望受挫" target="_blank" data-platform="科技新闻">
-                    <span class="news-rank top">4</span>
-                    <div class="news-body">
-                        <div class="news-title">以色列扩大在黎巴嫩的军事行动，停火希望受挫</div>
-                        <div class="news-meta">
-                            <span class="meta-platform">科技新闻</span>
-                            <span class="meta-heat">290万</span>
-                            <span class="meta-tag brand">军事</span>
-                        </div>
-                    </div>
-                    <span class="news-arrow">›</span>
-                </a>
-
-                <a class="news-item" href="https://www.google.com/search?q=中方代表呼吁立即实现停火止战，黎以局势急剧升级" target="_blank" data-platform="百度">
-                    <span class="news-rank top">5</span>
-                    <div class="news-body">
-                        <div class="news-title">中方代表呼吁立即实现停火止战，黎以局势急剧升级</div>
-                        <div class="news-meta">
-                            <span class="meta-platform">百度</span>
-                            <span class="meta-heat">504万</span>
-                            <span class="meta-tag ">外交</span>
-                        </div>
-                    </div>
-                    <span class="news-arrow">›</span>
-                </a>
-
-                <a class="news-item" href="https://www.google.com/search?q=挪威外长：世界太疯狂，重新考虑入欧" target="_blank" data-platform="百度">
-                    <span class="news-rank ">6</span>
-                    <div class="news-body">
-                        <div class="news-title">挪威外长：世界太疯狂，重新考虑入欧</div>
-                        <div class="news-meta">
-                            <span class="meta-platform">百度</span>
-                            <span class="meta-heat">513万</span>
-                            <span class="meta-tag ">外交</span>
-                        </div>
-                    </div>
-                    <span class="news-arrow">›</span>
-                </a>
-
-                <a class="news-item" href="https://www.google.com/search?q=印度遭遇罕见热浪突破百年来最高纪录，德里逼近50度" target="_blank" data-platform="知乎">
-                    <span class="news-rank ">7</span>
-                    <div class="news-body">
-                        <div class="news-title">印度遭遇罕见热浪突破百年来最高纪录，德里逼近50度</div>
-                        <div class="news-meta">
-                            <span class="meta-platform">知乎</span>
-                            <span class="meta-heat">105万</span>
+                            <span class="meta-heat">125万</span>
                             <span class="meta-tag ">灾害</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=中国船企在希腊签下百亿大单，签订12艘船舶" target="_blank" data-platform="百度">
-                    <span class="news-rank ">8</span>
+                <a class="news-item" href="https://www.google.com/search?q=特朗普访华规格缩水，中方对美说不，美国先遣队已离京" target="_blank" data-platform="微博">
+                    <span class="news-rank hot">3</span>
                     <div class="news-body">
-                        <div class="news-title">中国船企在希腊签下百亿大单，签订12艘船舶</div>
+                        <div class="news-title">特朗普访华规格缩水，中方对美说不，美国先遣队已离京</div>
+                        <div class="news-meta">
+                            <span class="meta-platform">微博</span>
+                            <span class="meta-heat">580万</span>
+                            <span class="meta-tag ">外交</span>
+                        </div>
+                    </div>
+                    <span class="news-arrow">›</span>
+                </a>
+
+                <a class="news-item" href="https://www.google.com/search?q=伊朗分三次发射9枚导弹，攻击美军“林肯”号" target="_blank" data-platform="微博">
+                    <span class="news-rank top">4</span>
+                    <div class="news-body">
+                        <div class="news-title">伊朗分三次发射9枚导弹，攻击美军“林肯”号</div>
+                        <div class="news-meta">
+                            <span class="meta-platform">微博</span>
+                            <span class="meta-heat">520万</span>
+                            <span class="meta-tag brand">军事</span>
+                        </div>
+                    </div>
+                    <span class="news-arrow">›</span>
+                </a>
+
+                <a class="news-item" href="https://www.google.com/search?q=荷兰护卫舰雷达全瞎、通信中断，夹着尾巴逃了" target="_blank" data-platform="百度">
+                    <span class="news-rank top">5</span>
+                    <div class="news-body">
+                        <div class="news-title">荷兰护卫舰雷达全瞎、通信中断，夹着尾巴逃了</div>
                         <div class="news-meta">
                             <span class="meta-platform">百度</span>
-                            <span class="meta-heat">314万</span>
-                            <span class="meta-tag ">经贸</span>
+                            <span class="meta-heat">480万</span>
+                            <span class="meta-tag brand">军事</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
@@ -752,110 +545,84 @@
             <div class="category-header" onclick="toggleCat(3)">
                 <span class="category-icon">💰</span>
                 <span class="category-name">财经商业</span>
-                <span class="category-count">8 条</span>
+                <span class="category-count">6 条</span>
                 <span class="category-toggle">▼</span>
             </div>
             <div class="news-list">
 
-                <a class="news-item" href="https://www.google.com/search?q=国产电动车掀起全球出海热" target="_blank" data-platform="百度">
+                <a class="news-item" href="https://www.google.com/search?q=双汇创始人父子10年掏空式分红517亿，金额超越公司净利润" target="_blank" data-platform="知乎">
                     <span class="news-rank hot">1</span>
                     <div class="news-body">
-                        <div class="news-title">国产电动车掀起全球出海热</div>
+                        <div class="news-title">双汇创始人父子10年掏空式分红517亿，金额超越公司净利润</div>
                         <div class="news-meta">
-                            <span class="meta-platform">百度</span>
-                            <span class="meta-heat">550万</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">405万</span>
+                            <span class="meta-tag ">财经</span>
+                        </div>
+                    </div>
+                    <span class="news-arrow">›</span>
+                </a>
+
+                <a class="news-item" href="https://www.google.com/search?q=比亚迪5月汽车销量达38.3万辆年内首次增长" target="_blank" data-platform="知乎">
+                    <span class="news-rank hot">2</span>
+                    <div class="news-body">
+                        <div class="news-title">比亚迪5月汽车销量达38.3万辆年内首次增长</div>
+                        <div class="news-meta">
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">214万</span>
                             <span class="meta-tag ">汽车</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=美团Q1营收910亿元，经营亏损收窄至65亿元" target="_blank" data-platform="科技新闻">
-                    <span class="news-rank hot">2</span>
+                <a class="news-item" href="https://www.google.com/search?q=美团一季度营收超910亿元，调整后净亏损49.7亿元" target="_blank" data-platform="知乎">
+                    <span class="news-rank hot">3</span>
                     <div class="news-body">
-                        <div class="news-title">美团Q1营收910亿元，经营亏损收窄至65亿元</div>
+                        <div class="news-title">美团一季度营收超910亿元，调整后净亏损49.7亿元</div>
                         <div class="news-meta">
-                            <span class="meta-platform">科技新闻</span>
-                            <span class="meta-heat">380万</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">78万</span>
                             <span class="meta-tag ">财报</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=追觅开放直接融资窗口，或最高融资70亿元" target="_blank" data-platform="科技新闻">
-                    <span class="news-rank hot">3</span>
-                    <div class="news-body">
-                        <div class="news-title">追觅开放直接融资窗口，或最高融资70亿元</div>
-                        <div class="news-meta">
-                            <span class="meta-platform">科技新闻</span>
-                            <span class="meta-heat">320万</span>
-                            <span class="meta-tag ">融资</span>
-                        </div>
-                    </div>
-                    <span class="news-arrow">›</span>
-                </a>
-
-                <a class="news-item" href="https://www.google.com/search?q=长三角正在疯狂建机场，4座民用运输机场密集通航" target="_blank" data-platform="百度">
+                <a class="news-item" href="https://www.google.com/search?q=零跑月交付破8万，小鹏、小米、理想、蔚来超3万" target="_blank" data-platform="知乎">
                     <span class="news-rank top">4</span>
                     <div class="news-body">
-                        <div class="news-title">长三角正在疯狂建机场，4座民用运输机场密集通航</div>
-                        <div class="news-meta">
-                            <span class="meta-platform">百度</span>
-                            <span class="meta-heat">521万</span>
-                            <span class="meta-tag ">基建</span>
-                        </div>
-                    </div>
-                    <span class="news-arrow">›</span>
-                </a>
-
-                <a class="news-item" href="https://www.google.com/search?q=天涯社区回归上线即被挤崩，访问人数剧增" target="_blank" data-platform="科技新闻">
-                    <span class="news-rank top">5</span>
-                    <div class="news-body">
-                        <div class="news-title">天涯社区回归上线即被挤崩，访问人数剧增</div>
-                        <div class="news-meta">
-                            <span class="meta-platform">科技新闻</span>
-                            <span class="meta-heat">280万</span>
-                            <span class="meta-tag ">互联网</span>
-                        </div>
-                    </div>
-                    <span class="news-arrow">›</span>
-                </a>
-
-                <a class="news-item" href="https://www.google.com/search?q=韩国SK海力士工厂突发火灾，市值刚突破1万亿美元" target="_blank" data-platform="知乎">
-                    <span class="news-rank ">6</span>
-                    <div class="news-body">
-                        <div class="news-title">韩国SK海力士工厂突发火灾，市值刚突破1万亿美元</div>
+                        <div class="news-title">零跑月交付破8万，小鹏、小米、理想、蔚来超3万</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
-                            <span class="meta-heat">254万</span>
-                            <span class="meta-tag ">半导体</span>
-                        </div>
-                    </div>
-                    <span class="news-arrow">›</span>
-                </a>
-
-                <a class="news-item" href="https://www.google.com/search?q=油车降价、电车涨价，新能源车渗透率超60%" target="_blank" data-platform="知乎">
-                    <span class="news-rank ">7</span>
-                    <div class="news-body">
-                        <div class="news-title">油车降价、电车涨价，新能源车渗透率超60%</div>
-                        <div class="news-meta">
-                            <span class="meta-platform">知乎</span>
-                            <span class="meta-heat">86万</span>
+                            <span class="meta-heat">56万</span>
                             <span class="meta-tag ">汽车</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=库里官宣签约李宁十年！勇士两大核心都签约李宁" target="_blank" data-platform="网易">
-                    <span class="news-rank ">8</span>
+                <a class="news-item" href="https://www.google.com/search?q=大厂HR转行做求职陪跑，每单收费过万" target="_blank" data-platform="知乎">
+                    <span class="news-rank top">5</span>
                     <div class="news-body">
-                        <div class="news-title">库里官宣签约李宁十年！勇士两大核心都签约李宁</div>
+                        <div class="news-title">大厂HR转行做求职陪跑，每单收费过万</div>
                         <div class="news-meta">
-                            <span class="meta-platform">网易</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">78万</span>
+                            <span class="meta-tag ">职场</span>
+                        </div>
+                    </div>
+                    <span class="news-arrow">›</span>
+                </a>
+
+                <a class="news-item" href="https://www.google.com/search?q=Spotify再次宣布涨价，个人版上调一美元" target="_blank" data-platform="科技新闻">
+                    <span class="news-rank ">6</span>
+                    <div class="news-body">
+                        <div class="news-title">Spotify再次宣布涨价，个人版上调一美元</div>
+                        <div class="news-meta">
+                            <span class="meta-platform">科技新闻</span>
                             <span class="meta-heat">220万</span>
-                            <span class="meta-tag ">体育商业</span>
+                            <span class="meta-tag ">互联网</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
@@ -868,110 +635,84 @@
             <div class="category-header" onclick="toggleCat(4)">
                 <span class="category-icon">🎭</span>
                 <span class="category-name">娱乐文化</span>
-                <span class="category-count">8 条</span>
+                <span class="category-count">6 条</span>
                 <span class="category-toggle">▼</span>
             </div>
             <div class="news-list">
 
-                <a class="news-item" href="https://www.google.com/search?q=奚梦瑶与何猷君在法国补办婚礼" target="_blank" data-platform="百度">
+                <a class="news-item" href="https://www.google.com/search?q=《三国演义》司马懿饰演者魏宗万去世" target="_blank" data-platform="知乎">
                     <span class="news-rank hot">1</span>
                     <div class="news-body">
-                        <div class="news-title">奚梦瑶与何猷君在法国补办婚礼</div>
+                        <div class="news-title">《三国演义》司马懿饰演者魏宗万去世</div>
                         <div class="news-meta">
-                            <span class="meta-platform">百度</span>
-                            <span class="meta-heat">550万</span>
-                            <span class="meta-tag ">明星</span>
+                            <span class="meta-platform">知乎</span>
+                            <span class="meta-heat">296万</span>
+                            <span class="meta-tag ">影视</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=张凌赫南宁活动出意外，粉丝挤爆商场玻璃门5人受伤" target="_blank" data-platform="知乎">
+                <a class="news-item" href="https://www.google.com/search?q=美加墨世界杯球员身价榜公布，亚马尔超4亿美元高居榜首" target="_blank" data-platform="知乎">
                     <span class="news-rank hot">2</span>
                     <div class="news-body">
-                        <div class="news-title">张凌赫南宁活动出意外，粉丝挤爆商场玻璃门5人受伤</div>
+                        <div class="news-title">美加墨世界杯球员身价榜公布，亚马尔超4亿美元高居榜首</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
-                            <span class="meta-heat">87万</span>
-                            <span class="meta-tag ">明星</span>
+                            <span class="meta-heat">136万</span>
+                            <span class="meta-tag ">体育</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=天涯论坛真的有那么厉害么？" target="_blank" data-platform="知乎">
+                <a class="news-item" href="https://www.google.com/search?q=为什么英语「black tea」会被中国人翻译为「红茶」？" target="_blank" data-platform="知乎">
                     <span class="news-rank hot">3</span>
                     <div class="news-body">
-                        <div class="news-title">天涯论坛真的有那么厉害么？</div>
+                        <div class="news-title">为什么英语「black tea」会被中国人翻译为「红茶」？</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
-                            <span class="meta-heat">358万</span>
+                            <span class="meta-heat">379万</span>
                             <span class="meta-tag ">文化</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=《大明王朝1566》陈洪讨好徐阶时，徐阶为何冷漠？" target="_blank" data-platform="知乎">
+                <a class="news-item" href="https://www.google.com/search?q=夏威夷野鸡泛滥数量或超几十万只，政府诱捕一只要花超100美元" target="_blank" data-platform="知乎">
                     <span class="news-rank top">4</span>
                     <div class="news-body">
-                        <div class="news-title">《大明王朝1566》陈洪讨好徐阶时，徐阶为何冷漠？</div>
+                        <div class="news-title">夏威夷野鸡泛滥数量或超几十万只，政府诱捕一只要花超100美元</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
-                            <span class="meta-heat">121万</span>
-                            <span class="meta-tag ">影视</span>
+                            <span class="meta-heat">680万</span>
+                            <span class="meta-tag ">奇闻</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=黛玉为什么喜欢宝钗？" target="_blank" data-platform="知乎">
+                <a class="news-item" href="https://www.google.com/search?q=如何看待《奔跑吧》等综艺嘉宾安全带被曝是后期P图？" target="_blank" data-platform="知乎">
                     <span class="news-rank top">5</span>
                     <div class="news-body">
-                        <div class="news-title">黛玉为什么喜欢宝钗？</div>
+                        <div class="news-title">如何看待《奔跑吧》等综艺嘉宾安全带被曝是后期P图？</div>
                         <div class="news-meta">
                             <span class="meta-platform">知乎</span>
-                            <span class="meta-heat">85万</span>
-                            <span class="meta-tag ">文学</span>
+                            <span class="meta-heat">78万</span>
+                            <span class="meta-tag ">娱乐</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
                 </a>
 
-                <a class="news-item" href="https://www.google.com/search?q=演员到底有多吃天赋？" target="_blank" data-platform="知乎">
+                <a class="news-item" href="https://www.google.com/search?q=老宅被亲戚偷装光伏板女子崩溃痛哭" target="_blank" data-platform="微博">
                     <span class="news-rank ">6</span>
                     <div class="news-body">
-                        <div class="news-title">演员到底有多吃天赋？</div>
+                        <div class="news-title">老宅被亲戚偷装光伏板女子崩溃痛哭</div>
                         <div class="news-meta">
-                            <span class="meta-platform">知乎</span>
-                            <span class="meta-heat">63万</span>
-                            <span class="meta-tag ">影视</span>
-                        </div>
-                    </div>
-                    <span class="news-arrow">›</span>
-                </a>
-
-                <a class="news-item" href="https://www.google.com/search?q=为什么好像大家都不怎么批评「小字营销」了？" target="_blank" data-platform="知乎">
-                    <span class="news-rank ">7</span>
-                    <div class="news-body">
-                        <div class="news-title">为什么好像大家都不怎么批评「小字营销」了？</div>
-                        <div class="news-meta">
-                            <span class="meta-platform">知乎</span>
-                            <span class="meta-heat">109万</span>
-                            <span class="meta-tag ">营销</span>
-                        </div>
-                    </div>
-                    <span class="news-arrow">›</span>
-                </a>
-
-                <a class="news-item" href="https://www.google.com/search?q=高考结束后准大学生如何选一台能用四年的游戏本？" target="_blank" data-platform="知乎">
-                    <span class="news-rank ">8</span>
-                    <div class="news-body">
-                        <div class="news-title">高考结束后准大学生如何选一台能用四年的游戏本？</div>
-                        <div class="news-meta">
-                            <span class="meta-platform">知乎</span>
-                            <span class="meta-heat">59万</span>
-                            <span class="meta-tag ">数码</span>
+                            <span class="meta-platform">微博</span>
+                            <span class="meta-heat">307万</span>
+                            <span class="meta-tag ">社会</span>
                         </div>
                     </div>
                     <span class="news-arrow">›</span>
@@ -985,28 +726,22 @@
             <p>每日 12:16 CST 自动采集更新 · <a href="https://evelynnn0378.github.io/hot-news-dashboard/" target="_blank">在线看板</a></p>
         </div>
     </div>
-
     <script>
         function toggleCat(index) {
             document.getElementById('cat-' + index).classList.toggle('collapsed');
         }
-
-        // Platform filter
         document.querySelectorAll('.filter-pill').forEach(pill => {
             pill.addEventListener('click', function() {
                 document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
                 this.classList.add('active');
-
                 const filter = this.dataset.filter;
                 const items = document.querySelectorAll('.news-item');
                 const cats = document.querySelectorAll('.category');
-
                 if (filter === 'all') {
                     items.forEach(item => item.style.display = 'flex');
                     cats.forEach(cat => cat.style.display = 'block');
                     return;
                 }
-
                 items.forEach(item => {
                     const platform = item.dataset.platform;
                     if (platform && platform.includes(filter)) {
@@ -1016,7 +751,6 @@
                         item.style.display = 'none';
                     }
                 });
-
                 cats.forEach(cat => {
                     const visible = cat.querySelectorAll('.news-item[style="display: flex;"]').length;
                     if (visible === 0) cat.style.display = 'none';
